@@ -6,7 +6,7 @@
 /*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/08/25 15:01:49 by slott            ###   ########.fr       */
+/*   Updated: 2022/08/29 18:57:09 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINIRT_H
@@ -16,21 +16,8 @@
 # include <stdio.h>
 # include <math.h>
 # include "mlx/mlx.h"
+# include "vector_lib/vector.h"
 # include <stdlib.h>
-
-typedef struct s_rgb
-{
-	int	r;
-	int	g;
-	int b;
-}					t_rgb;
-
-typedef struct s_vect
-{
-	double	x;
-	double	y;
-	double	z;
-}					t_vect;
 
 typedef struct s_ray
 {

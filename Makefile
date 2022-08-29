@@ -1,7 +1,11 @@
 SRCS	= main.c \
-		 key_hook.c 
+		 key_hook.c \
+		 vector_lib/operator.c \
+		 vector_lib/x_operator.c \
+		 vector_lib/utils.c
 
-HEAD	= miniRt.h
+HEAD	= miniRt.h\
+		  -I vector_lib/vector.h
 
 OBJS 	= $(SRCS:.c=.o)
 
