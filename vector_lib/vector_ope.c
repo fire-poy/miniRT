@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   vector_ope.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/29 14:52:48 by slott             #+#    #+#             */
-/*   Updated: 2022/08/31 15:40:46 by slott            ###   ########.fr       */
+/*   Created: 2022/08/31 14:49:18 by slott             #+#    #+#             */
+/*   Updated: 2022/08/31 17:48:48 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "vector.h"
 
-t_vect	init_vec(float x, float y, float z)
+float	length(t_vect v)
 {
-	t_vect	v;
+	float	length;
 
-	v.x = x;
-	v.y = y;
-	v.z = z;
-	return (v);
+	length = sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
+	return (length);
 }
 
-int	to_color(t_vect col)
+t_vect	unit_vector(t_vect v)
 {
-	int	final;
-
-	final = (int)(col.z * 255);
-	final += (int)(col.y * 255) << 8;
-	final += (int)(col.x * 255) << 16;
-	return (final);
+	return (divis_x(v, length(v)));
 }
 
-void	print_vec(t_vect v)
+float	dot(t_vect v1, t_vect v2)
 {
-	printf("X : %f\n", v.x);
-	printf("Y : %f\n", v.y);
-	printf("Z : %f\n\n", v.z);
+	float	res;
+
+	res = v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+	return (res);
 }

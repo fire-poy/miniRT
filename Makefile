@@ -1,8 +1,10 @@
 SRCS	= main.c \
 		 key_hook.c \
+		 sphere.c \
 		 vector_lib/operator.c \
 		 vector_lib/x_operator.c \
-		 vector_lib/utils.c
+		 vector_lib/utils.c \
+		 vector_lib/vector_ope.c
 
 HEAD	= miniRt.h\
 		  -I vector_lib/vector.h
