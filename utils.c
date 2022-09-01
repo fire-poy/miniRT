@@ -5,42 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/29 14:52:48 by slott             #+#    #+#             */
-/*   Updated: 2022/09/01 16:17:15 by slott            ###   ########.fr       */
+/*   Created: 2022/09/01 16:42:36 by slott             #+#    #+#             */
+/*   Updated: 2022/09/01 16:48:15 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "vector.h"
+#include "miniRt.h"
 
-//Initialise un vecteur aux valeurs x, y et z
-
-t_vect	init_vec(float x, float y, float z)
+void	*ft_calloc(size_t count, size_t size)
 {
-	t_vect	v;
+	void	*out;
 
-	v.x = x;
-	v.y = y;
-	v.z = z;
-	return (v);
+	out = malloc(count * size);
+	if (out == NULL)
+		return (NULL);
+	ft_bzero(out, count * size);
+	return (out);
 }
 
-//Convertis un vecteur aux valeurs comprise entre 0 et 1 en int compatible avec
-// la fonction my_pxl_put
-
-int	to_color(t_vect col)
+void	ft_bzero(void *s, size_t n)
 {
-	int	final;
+	size_t	i;
 
-	final = (int)(col.z * 255);
-	final += (int)(col.y * 255) << 8;
-	final += (int)(col.x * 255) << 16;
-	return (final);
-}
-
-//Affiche les valeurs d'un vecteur
-
-void	print_vec(t_vect v)
-{
-	printf("X : %f\n", v.x);
-	printf("Y : %f\n", v.y);
-	printf("Z : %f\n\n", v.z);
+	i = 0;
+	while (i < n)
+		*(unsigned char *)(s + i++) = 0;
 }

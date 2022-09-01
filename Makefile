@@ -1,6 +1,7 @@
 SRCS	= main.c \
 		 key_hook.c \
 		 sphere.c \
+		 utils.c \
 		 vector_lib/operator.c \
 		 vector_lib/x_operator.c \
 		 vector_lib/utils.c \

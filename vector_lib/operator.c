@@ -6,10 +6,12 @@
 /*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:26:53 by slott             #+#    #+#             */
-/*   Updated: 2022/08/31 15:37:02 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/01 16:14:30 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "vector.h"
+
+// Additionne n vecteurs entre eux
 
 t_vect	plus(int n, ...)
 {
@@ -33,6 +35,8 @@ t_vect	plus(int n, ...)
 	return (final);
 }
 
+// Soustrais n vecteur entre eux
+
 t_vect	moins(int n, ...)
 {
 	t_vect	final;
@@ -55,6 +59,8 @@ t_vect	moins(int n, ...)
 	return (final);
 }
 
+// Multiplie n vecteurs entre eux
+
 t_vect	fois(int n, ...)
 {
 	t_vect	final;
@@ -76,6 +82,8 @@ t_vect	fois(int n, ...)
 	va_end(ptr);
 	return (final);
 }
+
+// Divise n vecteur entre eux
 
 t_vect	divis(int n, ...)
 {

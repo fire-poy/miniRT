@@ -6,10 +6,12 @@
 /*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:49:18 by slott             #+#    #+#             */
-/*   Updated: 2022/08/31 17:48:48 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/01 16:17:10 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "vector.h"
+
+// Renvoie la "longeur" du vecteur
 
 float	length(t_vect v)
 {
@@ -19,10 +21,15 @@ float	length(t_vect v)
 	return (length);
 }
 
+// Transforme un vecteur en vecteur unitaire
+// Unitaire = avec des valeurs comprises entre 0 et 1
+
 t_vect	unit_vector(t_vect v)
 {
 	return (divis_x(v, length(v)));
 }
+
+// Produit scalaire de 2 vecteurs
 
 float	dot(t_vect v1, t_vect v2)
 {

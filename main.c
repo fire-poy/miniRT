@@ -6,7 +6,7 @@
 /*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 10:39:17 by slott             #+#    #+#             */
-/*   Updated: 2022/08/31 17:48:43 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/01 17:03:30 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "miniRt.h"
@@ -41,43 +41,52 @@ t_vect	color(t_sp sp, t_ray r)
 	return (col);
 }
 
-int	main()
+void	render(t_mlx *i, t_set *set)
 {
-	t_mlx	i;
-	t_vect corner;
-	t_vect horizontal;
-	t_vect vertical;
-	t_vect	origin;
 	t_ray	ray;
+	t_vect	col;
 	float	u;
 	float	v;
-	t_vect	col;
-	t_sp	sp;
 
-	i.mlx_ptr = mlx_init();
-	i.win_ptr = mlx_new_window(i.mlx_ptr, 1800, 900, "MiniRT");
-	i.img = mlx_new_image(i.mlx_ptr, 1800, 900);
-	i.addr = mlx_get_data_addr(i.img, &i.bpp, &i.line_length, &i.endian);
-	corner = init_vec(-2, -1, -1);
-	horizontal = init_vec(4, 0, 0);
-	vertical = init_vec(0, 2, 0);
-	origin = init_vec(0, 0, 0);
-	sp.c = init_vec(0, 0, -1);
-	sp.r = 0.5;
-	sp.rgb = init_vec(1, 0, 0);
-	for (int y = 899; y >= 0 ; y--)
+	for (int y = 899; y >= 0; y--)
 	{
 		for (int x = 0; x < 1800; x++)
 		{
 			u = (float)x / (float)1800;
 			v = (float)y / (float)900;
-			ray.pos = origin;
-			ray.dir = plus(3, corner, fois_x(horizontal, u), fois_x(vertical, v));
-			col = color(sp, ray);
-			my_pxl_put(&i, x, y, to_color(col));
+			ray.pos = set->win.origin;
+			ray.dir = plus(3, set->win.corner, \
+					fois_x(set->win.horizontal, u), fois_x(set->win.vertical, v));
+			col = color(set->sp_list[0], ray);
+			my_pxl_put(i, x, y, to_color(col));
 		}
 	}
-	mlx_put_image_to_window(i.mlx_ptr, i.win_ptr, i.img, 0, 0);
+	mlx_put_image_to_window(i->mlx_ptr, i->win_ptr, i->img, 0, 0);
+}
+
+void	init_set(t_set *set)
+{
+	set->win.corner = init_vec(-2, -1, -1);
+	set->win.horizontal = init_vec(4, 0, 0);
+	set->win.vertical = init_vec(0, 2, 0);
+	set->win.origin = init_vec(0, 0, 0);
+	set->sp_list = ft_calloc(2, sizeof(t_sp));
+	set->sp_list[0].c = init_vec(0, 0, -1);
+	set->sp_list[0].r = 0.5;
+	set->sp_list[0].rgb = init_vec(1, 0, 0);
+}
+
+int	main()
+{
+	t_mlx	i;
+	t_set	set;
+
+	i.mlx_ptr = mlx_init();
+	i.win_ptr = mlx_new_window(i.mlx_ptr, 1800, 900, "MiniRT");
+	i.img = mlx_new_image(i.mlx_ptr, 1800, 900);
+	i.addr = mlx_get_data_addr(i.img, &i.bpp, &i.line_length, &i.endian);
+	init_set(&set);
+	render(&i, &set);
 	mlx_key_hook(i.win_ptr, key_hook, NULL);
 	mlx_loop(i.mlx_ptr);
 	return (0);
