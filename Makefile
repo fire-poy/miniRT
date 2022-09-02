@@ -2,6 +2,9 @@ NAME=mini_rt
 CODEDIRS=. ./vector_lib
 INCDIRS=. ./vector_lib/
 
+LIBFT=./libft/libft.a
+LIBFT_DIR=./libft
+
 MLX=./mlx/libmlx.a
 MLX_DIR=./mlx
 MLX_FLAGS= -framework OpenGL -framework Appkit
@@ -23,9 +26,12 @@ debug: CFLAGS += $(DEBUG_CFLAGS)
 debug: MLX_FLAGS += $(DEBUG_CFLAGS)
 debug: $(NAME)
 
-$(NAME): $(OBJECTS) $(MLX)
+$(NAME): $(OBJECTS) $(MLX) $(LIBFT)
 	$(CC) -o $@ $^ $(MLX_FLAGS)
 
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
+	
 $(MLX):
 	@ $(MAKE) -C $(MLX_DIR) 
 
@@ -52,4 +58,4 @@ norm:
 	norminette -d $(CODEDIRS)
 
 # add .PHONY so that the non-targetfile - rules work even if a file with the same name exists.
-.PHONY: all clean re diff
+.PHONY: all clean re diff debug norm

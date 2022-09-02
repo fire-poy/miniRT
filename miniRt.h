@@ -9,6 +9,7 @@
 /*   Updated: 2022/09/02 13:56:14 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #ifndef MINIRT_H
 # define MINIRT_H
 
@@ -18,6 +19,7 @@
 # include "mlx/mlx.h"
 # include "vector_lib/vector.h"
 # include <stdlib.h>
+# include <fcntl.h>
 
 typedef struct s_plan
 {
@@ -100,6 +102,16 @@ typedef struct mlx_instance
 	int		endian;
 }		t_mlx;
 
+typedef struct s_set
+{
+	t_sp		*sp_list;
+	t_cyl		*cyl_list;
+	t_plan		*plan_list;
+	t_light		light;
+	t_ambiant	ambiant;
+	t_camera	cam;
+}					t_set;
+
 void	my_pxl_put(t_mlx *d, int x, int y, int color);
 t_vect	color(t_sp sp, t_ray r);
 float	hit_sp(t_sp sp, t_ray ray);
@@ -108,7 +120,7 @@ void	init_set(t_set *set);
 void	render(t_mlx *i, t_set *set);
 void	fov(t_set *set);
 int		key_hook(int keycode);
-void	*ft_calloc(size_t count, size_t size);
-void	ft_bzero(void *s, size_t n);
+//void	*ft_calloc(size_t count, size_t size);
+//void	ft_bzero(void *s, size_t n);
 
 #endif
