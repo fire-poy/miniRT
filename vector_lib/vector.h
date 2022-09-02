@@ -6,7 +6,7 @@
 /*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:02:07 by slott             #+#    #+#             */
-/*   Updated: 2022/09/01 17:03:22 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/02 13:56:19 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef VECTOR_H
@@ -38,6 +38,7 @@ t_vect	divis_x(t_vect v1, float t);
 float	length(t_vect v);
 t_vect	unit_vector(t_vect v);
 float	dot(t_vect v1, t_vect v2);
+t_vect	cross(t_vect v1, t_vect v2);
 
 t_vect	init_vec(float x, float y, float z);
 int		to_color(t_vect col);

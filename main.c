@@ -6,7 +6,7 @@
 /*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 10:39:17 by slott             #+#    #+#             */
-/*   Updated: 2022/09/01 17:03:30 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/02 13:56:42 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "miniRt.h"
@@ -54,7 +54,7 @@ void	render(t_mlx *i, t_set *set)
 		{
 			u = (float)x / (float)1800;
 			v = (float)y / (float)900;
-			ray.pos = set->win.origin;
+			ray.pos = set->cam.pos;
 			ray.dir = plus(3, set->win.corner, \
 					fois_x(set->win.horizontal, u), fois_x(set->win.vertical, v));
 			col = color(set->sp_list[0], ray);
@@ -66,12 +66,14 @@ void	render(t_mlx *i, t_set *set)
 
 void	init_set(t_set *set)
 {
-	set->win.corner = init_vec(-2, -1, -1);
+	set->cam.pos = init_vec(0, 0, 0);
+	set->cam.fov = 90;
+	set->cam.dir = init_vec(0, 0, 1);
+	fov(set);
 	set->win.horizontal = init_vec(4, 0, 0);
 	set->win.vertical = init_vec(0, 2, 0);
-	set->win.origin = init_vec(0, 0, 0);
 	set->sp_list = ft_calloc(2, sizeof(t_sp));
-	set->sp_list[0].c = init_vec(0, 0, -1);
+	set->sp_list[0].c = init_vec(0, 0, -3);
 	set->sp_list[0].r = 0.5;
 	set->sp_list[0].rgb = init_vec(1, 0, 0);
 }

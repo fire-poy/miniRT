@@ -6,7 +6,7 @@
 /*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:49:18 by slott             #+#    #+#             */
-/*   Updated: 2022/09/01 16:17:10 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/02 13:56:12 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "vector.h"
@@ -36,5 +36,15 @@ float	dot(t_vect v1, t_vect v2)
 	float	res;
 
 	res = v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+	return (res);
+}
+
+t_vect	cross(t_vect v1, t_vect v2)
+{
+	t_vect	res;
+
+	res.x = v1.y * v2.z - v1.z * v2.y;
+	res.y = -(v1.x * v2.z - v1.z * v2.x);
+	res.z = v1.x * v2.y - v1.y * v2.x;
 	return (res);
 }
