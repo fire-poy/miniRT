@@ -58,4 +58,4 @@ norm:
 	norminette -d $(CODEDIRS)
 
 # add .PHONY so that the non-targetfile - rules work even if a file with the same name exists.
-.PHONY: all clean re diff
+.PHONY: all clean re diff debug norm
