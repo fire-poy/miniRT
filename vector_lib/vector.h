@@ -6,7 +6,7 @@
 /*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:02:07 by slott             #+#    #+#             */
-/*   Updated: 2022/08/29 18:57:11 by slott            ###   ########.fr       */
+/*   Updated: 2022/08/31 17:48:51 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef VECTOR_H
@@ -20,9 +20,9 @@
 
 typedef struct s_vect
 {
-	double	x;
-	double	y;
-	double	z;
+	float	x;
+	float	y;
+	float	z;
 }				t_vect;
 
 t_vect	plus(int n, ...);
@@ -30,14 +30,16 @@ t_vect	moins(int n, ...);
 t_vect	fois(int n, ...);
 t_vect	divis(int n, ...);
 
-t_vect	plus_x(t_vect v1, double t);
-t_vect	moins_x(t_vect v1, double t);
-t_vect	fois_x(t_vect v1, double t);
-t_vect	divis_x(t_vect v1, double t);
+t_vect	plus_x(t_vect v1, float t);
+t_vect	moins_x(t_vect v1, float t);
+t_vect	fois_x(t_vect v1, float t);
+t_vect	divis_x(t_vect v1, float t);
 
-double	length(t_vect v);
+float	length(t_vect v);
 t_vect	unit_vector(t_vect v);
-t_vect	init_vec(double x, double y, double z);
+float	dot(t_vect v1, t_vect v2);
+
+t_vect	init_vec(float x, float y, float z);
 int		to_color(t_vect col);
 void	print_vec(t_vect v);
 

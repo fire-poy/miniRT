@@ -6,7 +6,7 @@
 /*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/08/29 18:57:09 by slott            ###   ########.fr       */
+/*   Updated: 2022/08/31 17:48:53 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINIRT_H
@@ -21,10 +21,17 @@
 
 typedef struct s_ray
 {
-	double	t;
+	float	t;
 	t_vect	pos;
 	t_vect	dir;
 }					t_ray;
+
+typedef struct s_sphere
+{
+	t_vect	c;
+	float	r;
+	t_vect	rgb;
+}					t_sp;
 
 typedef struct mlx_instance
 {
@@ -38,6 +45,9 @@ typedef struct mlx_instance
 }		t_mlx;
 
 void	my_pxl_put(t_mlx *d, int x, int y, int color);
+t_vect	color(t_sp sp, t_ray r);
+float	hit_sp(t_sp sp, t_ray ray);
+t_vect	point_at(t_ray r, float t);
 int		key_hook(int keycode);
 
 #endif

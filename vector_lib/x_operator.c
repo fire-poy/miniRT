@@ -6,12 +6,12 @@
 /*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 14:23:09 by slott             #+#    #+#             */
-/*   Updated: 2022/08/29 14:42:00 by slott            ###   ########.fr       */
+/*   Updated: 2022/08/31 15:36:54 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "vector.h"
 
-t_vect	plus_x(t_vect v1, double t)
+t_vect	plus_x(t_vect v1, float t)
 {
 	t_vect	final;
 
@@ -21,7 +21,7 @@ t_vect	plus_x(t_vect v1, double t)
 	return (final);
 }
 
-t_vect	moins_x(t_vect v1, double t)
+t_vect	moins_x(t_vect v1, float t)
 {
 	t_vect	final;
 
@@ -31,7 +31,7 @@ t_vect	moins_x(t_vect v1, double t)
 	return (final);
 }
 
-t_vect	fois_x(t_vect v1, double t)
+t_vect	fois_x(t_vect v1, float t)
 {
 	t_vect	final;
 
@@ -41,7 +41,7 @@ t_vect	fois_x(t_vect v1, double t)
 	return (final);
 }
 
-t_vect	divis_x(t_vect v1, double t)
+t_vect	divis_x(t_vect v1, float t)
 {
 	t_vect	final;
 
