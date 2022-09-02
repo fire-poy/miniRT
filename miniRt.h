@@ -6,7 +6,7 @@
 /*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/09/01 17:03:20 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/02 13:56:14 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINIRT_H
@@ -71,10 +71,11 @@ typedef struct s_sphere
 
 typedef struct s_window
 {
-	t_vect	origin;
 	t_vect	vertical;
 	t_vect	horizontal;
 	t_vect	corner;
+	t_vect	u;
+	t_vect	v;
 }					t_win;
 
 typedef struct s_set
@@ -105,6 +106,7 @@ float	hit_sp(t_sp sp, t_ray ray);
 t_vect	point_at(t_ray r, float t);
 void	init_set(t_set *set);
 void	render(t_mlx *i, t_set *set);
+void	fov(t_set *set);
 int		key_hook(int keycode);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);
