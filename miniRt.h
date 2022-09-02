@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   miniRt.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/08/25 15:01:49 by slott            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 #ifndef MINIRT_H
 # define MINIRT_H
 
@@ -16,28 +5,59 @@
 # include <stdio.h>
 # include <math.h>
 # include "mlx/mlx.h"
+# include "vector_lib/vector.h"
 # include <stdlib.h>
+# include <fcntl.h>
 
-typedef struct s_rgb
+typedef struct s_plan
 {
-	int	r;
-	int	g;
-	int b;
-}					t_rgb;
+	t_vect	pos;
+	t_vect	dir;
+	t_vect	rgb;
+}					t_plan;
 
-typedef struct s_vect
+typedef struct s_ambiant
 {
-	double	x;
-	double	y;
-	double	z;
-}					t_vect;
+	float	light;
+	t_vect	rgb;
+}					t_ambiant;
+
+typedef struct s_camera
+{
+	t_vect	pos;
+	t_vect	dir;
+	float	fov;
+}	t_camera;
+
+typedef struct s_light
+{
+	t_vect	pos;
+	float	light;
+	t_vect	rgb;
+}					t_light;
+
+typedef	struct s_cyl
+{
+	t_vect	pos;
+	t_vect	dir;
+	t_vect	rgb;
+	float	r;
+	float	len;
+}					t_cyl;
 
 typedef struct s_ray
 {
-	double	t;
+	float	t;
 	t_vect	pos;
 	t_vect	dir;
 }					t_ray;
+
+typedef struct s_sphere
+{
+	t_vect	c;
+	float	r;
+	t_vect	rgb;
+}					t_sp;
 
 typedef struct mlx_instance
 {
@@ -50,7 +70,20 @@ typedef struct mlx_instance
 	int		endian;
 }		t_mlx;
 
+typedef struct s_set
+{
+	t_sp		*sp_list;
+	t_cyl		*cyl_list;
+	t_plan		*plan_list;
+	t_light		light;
+	t_ambiant	ambiant;
+	t_camera	cam;
+}					t_set;
+
 void	my_pxl_put(t_mlx *d, int x, int y, int color);
+t_vect	color(t_sp sp, t_ray r);
+float	hit_sp(t_sp sp, t_ray ray);
+t_vect	point_at(t_ray r, float t);
 int		key_hook(int keycode);
 
 #endif

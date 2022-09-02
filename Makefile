@@ -1,33 +1,61 @@
-SRCS	= main.c \
-		 key_hook.c 
+NAME=mini_rt
+CODEDIRS=. ./vector_lib
+INCDIRS=. ./vector_lib/
 
-HEAD	= miniRt.h
+LIBFT=./libft/libft.a
+LIBFT_DIR=./libft
 
-OBJS 	= $(SRCS:.c=.o)
+MLX=./mlx/libmlx.a
+MLX_DIR=./mlx
+MLX_FLAGS= -framework OpenGL -framework Appkit
 
-NAME	= mini_rt
+CC=gcc
+# automatically add the -I onto each include directory
+CFLAGS=-Wall -Wextra -Werror $(foreach D,$(INCDIRS),-I$(D)) 
+DEBUG_CFLAGS = -g3 -fsanitize=address -fno-omit-frame-pointer
 
-LIB		= ar rcs
+# for-style iteration (foreach) and regular expression completions (wildcard)
+CFILES=$(foreach D,$(CODEDIRS),$(wildcard $(D)/*.c))
+# regular expression replacement
+OBJECTS=$(patsubst %.c,%.o,$(CFILES))
 
-CC		= gcc
-RM		= rm -f
+all: $(NAME)
 
-CFLAGS	= -Wall -Wextra -Werror
+debug: fclean
+debug: CFLAGS += $(DEBUG_CFLAGS)
+debug: MLX_FLAGS += $(DEBUG_CFLAGS)
+debug: $(NAME)
 
-.c.o:
-	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I $(HEAD)
+$(NAME): $(OBJECTS) $(MLX) $(LIBFT)
+	$(CC) -o $@ $^ $(MLX_FLAGS)
 
-$(NAME): $(OBJS)
-		$(CC) $(CFLAGS)  $(OBJS) -I./mlx -Lmlx -lmlx -framework OpenGL -framework Appkit -o $(NAME)
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
+	
+$(MLX):
+	@ $(MAKE) -C $(MLX_DIR) 
 
-all:	$(NAME)
+# only want the .c file dependency here, thus $< instead of $^.
+%.o:%.c
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	$(RM) $(OBJS)
+	rm -rf $(OBJECTS)
+# 	$(MAKE) -C $(MLX_DIR) clean
 
 fclean:	clean
-	$(RM) $(NAME)
+	rm -f $(NAME)
+#	 $(MAKE) -C $(MLX_DIR) clean
 
-re:		fclean all
+re:	fclean all
 
-.PHONY: all clean fclean re
+diff:
+	$(info The status of the repository, and the volume of per-file changes:)
+	@git status
+	@git diff --stat
+
+norm:
+	norminette -d $(CODEDIRS)
+
+# add .PHONY so that the non-targetfile - rules work even if a file with the same name exists.
+.PHONY: all clean re diff
