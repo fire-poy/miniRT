@@ -1,0 +1,111 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atof.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/25 16:18:46 by mpons             #+#    #+#             */
+/*   Updated: 2022/09/03 20:16:54 by mpons            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_is_it_white_space(char c)
+{
+	if (c == ' ' || c == '\t' || c == '\v'
+		|| c == '\f' || c == '\r')
+		return (1);
+	else
+		return (0);
+}
+
+float	get_sign(char *s, int *i)
+{
+	float sign;
+
+	sign = 1.0f;
+	while (ft_is_it_white_space(s[*i]))
+		(*i)++;
+	if (s[*i] == '-' || s[*i] == '+')
+	{
+		if (s[*i] == '-')
+			sign *= -1.0f;
+		(*i)++;
+	}
+	return (sign);
+}
+
+int	ft_is_it_float(char *s)
+{
+	int	i;
+	int	j;
+	int	point;
+
+	i = 0;
+	j = 0;
+	point = 0;
+	while (ft_is_it_white_space(s[i]))
+		i++;
+	if (s[i] == '-' || s[i] == '+')
+		i++;
+	while(ft_isdigit(s[i++]))
+	{
+		j++;
+		if (s[i] && s[i] == '.' && ft_isdigit(s[i + 1]))
+		{
+			if (++point > 1)
+				return (0);
+			i++;
+		}
+	}
+	if ((s[i] == '\0' || ft_is_it_white_space(s[i])) && j > 0)
+		return (1);
+	return (0);
+}
+
+float	ft_atof(char *s)
+{
+	int		i;
+	int		point;
+	float	sign;
+	float	value;
+	float	decimal;
+
+	i = 0;
+	value = 0;
+	point = 0;
+	decimal = 1.0f;
+	sign = 1.0f * get_sign(s, &i);
+	while (ft_isdigit(s[i]))
+	{
+		value *= 10;//1ere fois value = 0
+		value += s[i++] - '0';
+		if (point == 1)
+			decimal *= 10;
+		if (s[i] == '.')
+		{
+			point = 1;
+			i++;
+		}
+	}
+	return ((value * sign) / decimal);
+}
+// 	while (ft_isdigit(s[i]))
+// 	{
+// 		value *= 10;//1ere fois value = 0
+// 		value += s[i] - '0';
+// 		i++;
+// 	}
+// 	if (s[i++] != '.')
+// 		return (sign * value);
+// 	while (ft_isdigit(s[i]))
+// 	{
+// 		value *= 10;//1ere fois value = 0
+// 		value += s[i] - '0';
+// 		decimal *= 10
+// 		i++;
+// 	}
+// 	return ((value * sign) / decimal);
+// }

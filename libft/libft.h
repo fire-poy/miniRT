@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 10:50:22 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/01 21:03:06 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/03 22:41:20 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,15 @@ int		ft_strchr_char(const char *s, char c);
 int		ft_c_vs_charset(char c, const char *cs);
 int		ft_strchr_set(const char *s, char *set);
 int		ft_charset_found(const char *s, int *start, char *set);
+int		ft_is_it_float(char *s);
+float	ft_atof(char *s);
+int		ft_putnbr(int nb, int fd);
+char	**ft_split_set(char *s, char *set);
+void	free_tab(char **tab);
+void	free_tab_tab(char ***tab);
+int		ft_tab_len(char **t);
+
+
+
+
 #endif

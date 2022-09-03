@@ -2,12 +2,14 @@
 # define MINIRT_H
 
 # include <unistd.h>
+# include <stdlib.h>
 # include <stdio.h>
+# include <fcntl.h>
 # include <math.h>
 # include "mlx/mlx.h"
+# include "libft/libft.h"
 # include "vector_lib/vector.h"
-# include <stdlib.h>
-# include <fcntl.h>
+# include "parser/parser.h"
 
 typedef struct s_plan
 {
@@ -78,8 +80,9 @@ typedef struct s_set
 	t_light		light;
 	t_ambiant	ambiant;
 	t_camera	cam;
-}					t_set;
+}	t_set;
 
+t_set	*parsing(char *scene);
 void	my_pxl_put(t_mlx *d, int x, int y, int color);
 t_vect	color(t_sp sp, t_ray r);
 float	hit_sp(t_sp sp, t_ray ray);

@@ -6,64 +6,16 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:50:52 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/02 15:22:47 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/03 23:27:32 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser.h"
+#include "../miniRt.h"
 
-int	ft_putnbr(int nb, int fd)
-{
-	int				count;
-	unsigned int	nbr;
-
-	count = 0;
-	if (nb < 0)
-	{
-		count += ft_putchar_fd('-', fd);
-		nbr = (unsigned int)(nb * -1);
-	}
-	else
-		nbr = (unsigned int)nb;
-	if (nbr >= 10)
-	{
-		count += ft_putnbr(nbr / 10);
-		nbr = nbr % 10;
-	}
-	if (nbr < 10)
-	{
-		count += ft_putchar_fd(nbr + 48, fd);
-	}
-	return (count);
-}
-
-void    print_error_exit(char *e, int line_err,int exit_status)
-{
-    ft_putendl_fd(e, 2);
-	if (line_err)
-	{
-    	ft_putendl_fd("\n line", 2);
-		ft_putnbr_fd(line_err, 2);
-    	ft_putendl_fd("\n", 2);
-	}
-    exit (exit_status);
-}
-// Si vous rencontrez un quelconque problème de configuration dans le fichier, 
-// votre programme doit se fermer correctement et renvoyer "Error\n" suivi 
-// d’un message explicite de votre choix.
-
-void	check_arg(char *scene)
-{
-	if (ft_strlen(scene) < 4 || (!ft_strchr(scene, '.')))
-		print_error_exit("Error\nArgument invalid", 1);
-	if (ft_ft_strcmp(ft_strrchr(av[1], '.'), ".rt", 3) != 0)
-		print_error_exit("Error\nType de scene invalide (.rt), 1");
-}
 // - Couleurs R,G,B dans le range [0-255] : 10, 0, 255
 // check_colors
 //get colors
-
-t_objs	init_q_objs(void)
+t_q_obj	init_q_objs(void)
 {
 	t_q_obj q_obj;
 	
@@ -97,51 +49,96 @@ t_set	*parsing(char *scene)
 	{
 		fd = open(scene, O_RDONLY);
 		if (fd == -1)
-			print_error_exit("Error\nPendant l'ouverture de fichier");
+			print_error_exit("Error\nPendant l'ouverture de fichier", 0, 1);
 		l_nb = 0;
 		line = get_next_line(fd);
-		// checkmap;
+//❗️ checkmap
 		while (line)
 		{
 			l_nb++;
-			if (line[0] == '\n')//ligne vide
+			if (line[0] == '\n' && line[1] == '\0')//ligne vide
 			{
 				free(line);
 				line = get_next_line(fd);
 				continue ;
 			}
-			obj_info = ft_split_set(line, " \t")
-			// if (!ft_strcmp(line[i], "A"))
+			obj_info = ft_split_set(line, " \t\v\f\r");
 			if (!ft_strcmp(obj_info[0], "A"))
+			// check_lumiere
 			{
 				if (ft_tab_len(obj_info) != 3)
 				{
 					free_tab(obj_info);
 					print_error_exit("Error\nQuantité des informations ne correspondent pas au type d'objet", l_nb, 1);
 				}
-				q_obj.a++
+				q_obj.a++;
 				if (q_obj.a > 1)
 					print_error_exit("Error\n1 Lumière ambiente maximum", l_nb, 1);
 				check_range_ambiante(obj_info[1])
-				check_colors(obj_info[2])
+				{
+				if (ft_is_it_float(obj_info[1]) == 0)
+				{
+					free_tab(obj_info);
+					print_error_exit("Error\nNumero n'est pas un float", l_nb, 1); //ajoute pointeur foncion sur free fonction
+				}
+				n = atof(obj_info[1])
+				if (in_range(n, 0.0f, 1.0f))
 					{
-						tab_col = ft_split(obj_info[2], ',')
-						if (ft_tab_len(tab_col) != 3)
-							print_error_exit("Error\nIl faut 3 infos pour la couleur [0,255]", l_nb, 1);
-						if (atoi(tab_col[0]) < 0 || atoi(tab_col[0] > 255)
-						|| (atoi(tab_col[1]) < 0 || atoi(tab_col[1] > 255)
-						|| (atoi(tab_col[2]) < 0 || atoi(tab_col[2] > 255))
-						print_error_exit("Error\nCouleurs R,G,B doivent être dans le range [0,255]", l_nb, 1);
+						if (n < min|| n > max);
+							return (0);
+						return (1);
 					}
-					free (tab_col)
-				// check_range()
-				// if (!strncmp(obj_inf[1], "[0.0,1.0]")
-				// if ((obj_inf[1][0] == '0' || obj_inf[1][0] == '1') && obj_inf[1][1] == '.' && obj_inf[1][2])
-				// else if (!ft_strncmp(obj_info[1], , 1)
-				// if (!ft_strncmp(obj_info[1], , 1)
+					print_error_exit("Error\nFloat dehors range [0.0,1.0]", l_nb, 1); //ajoute pointeur foncion sur free fonction
+				check_colors(obj_info[2])
+				{
+					// int i = 0;
+					// int chifre = 0;
+					// int color = 0;
+					// while (s[i])
+					// {   123,465,3
+					// 	if (!ft_is_digit(s[i]))
+					// 		print_error_exit("Error\nFormat des couleurs [0-255,0-255,0-255]", l_nb, 1); //ajoute pointeur foncion sur free fonction
+					// 	if (s[i + 1] == ',')
+					// 	i++;
+					// 	chifre++;
+					// 	color++;
+					// 	if (j > 3 && s[i + 1] == ',')
+					// 	if (j == 3)	
+				// 	}
+				// if (ft_atoi(tab_col[0]) < 0 || ft_atoi(tab_col[0] > 255)
+				// || (ft_atoi(tab_col[1]) < 0 || ft_atoi(tab_col[1] > 255)
+					// || (ft_atoi(tab_col[2]) < 0 || ft_atoi(tab_col[2] > 255))
+					tab_col = ft_split(obj_info[2], ',')
+					if (ft_tab_len(tab_col) != 3)
+						print_error_exit("Error\nIl faut 3 infos pour la couleur [R,G,B]", l_nb, 1);
+						while (tab_col[i])
+						{
+							//chercher dans obj_info [1 2 ou 3digit,3digit,3digit] si ce nest pas le cas error format
+							// if (!ft_is_digit(tab_col[i][j]))
+							if (ft_is_it_float(tab_col) == 0)
+							{
+								free_tab(tab_col);
+								print_error_exit("Error\nCe n'est pas un numero [0,255]", l_nb, 1);
+							}
+							else 
+							if (!in_range(n, 0.0f, 255.0f))
+							{
+								free_tab(tab_col);
+								print_error_exit("Error\nCouleurs R,G,B doivent être dans le range [0,255]", l_nb, 1);
+							}								
+						}
+					}
+				if n < min ou >max => out of range
+				
+			
+				if (!strncmp(obj_inf[1], "[0.0,1.0]")
+				if ((obj_inf[1][0] == '0' || obj_inf[1][0] == '1') && obj_inf[1][1] == '.' && obj_inf[1][2])
+				else if (!ft_strncmp(obj_info[1], , 1)
+				if (!ft_strncmp(obj_info[1], , 1)
+				}
 			}
-//CAMERA
 			if (!ft_strcmp(line[i], "C"))
+			//CAMERA
 			{
 				if (ft_words(line) != 4)
 					print_error_exit("Error\nQuantité des informations ne correspondent pas au type d'objet", , l_nb, 1);

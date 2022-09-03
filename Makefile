@@ -1,6 +1,6 @@
 NAME=mini_rt
-CODEDIRS=. ./vector_lib
-INCDIRS=. ./vector_lib/
+CODEDIRS=. ./vector_lib ./parser
+INCDIRS=. ./vector_lib ./parser 
 
 LIBFT=./libft/libft.a
 LIBFT_DIR=./libft
@@ -57,5 +57,8 @@ diff:
 norm:
 	norminette -d $(CODEDIRS)
 
+run: all
+	./$(NAME)
+
 # add .PHONY so that the non-targetfile - rules work even if a file with the same name exists.
-.PHONY: all clean re diff
+.PHONY: all clean re diff debug norm run
