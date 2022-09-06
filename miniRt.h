@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/09/06 08:27:52 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/06 11:57:55 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ typedef struct mlx_instance
 	int		endian;
 }		t_mlx;
 
-t_set	*parsing(char *scene);
+void	parsing(char *scene_file, t_set *set);
 void	my_pxl_put(t_mlx *d, int x, int y, int color);
 t_vect	color(t_sp sp, t_ray r);
 float	hit_sp(t_sp sp, t_ray ray);
