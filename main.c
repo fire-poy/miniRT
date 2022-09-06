@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 10:39:17 by slott             #+#    #+#             */
-/*   Updated: 2022/09/02 13:56:42 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/06 08:16:06 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "miniRt.h"
 
 void	my_pxl_put(t_mlx *d, int x, int y, int color)
@@ -18,6 +19,8 @@ void	my_pxl_put(t_mlx *d, int x, int y, int color)
 	dst = d->addr + (y * d->line_length + x * (d->bpp / 8));
 	*(unsigned int *)dst = color;
 }
+
+inst = 0;
 
 t_vect	color(t_sp sp, t_ray r)
 {
@@ -78,11 +81,14 @@ void	init_set(t_set *set)
 	set->sp_list[0].rgb = init_vec(1, 0, 0);
 }
 
-int	main()
+int	main(int ac, char **av)
 {
 	t_mlx	i;
 	t_set	set;
 
+	if (ac != 2)
+		print_error_exit("Usage: ./miniRT scene.rt", 0 , 1);
+	parsing(av[1]);
 	i.mlx_ptr = mlx_init();
 	i.win_ptr = mlx_new_window(i.mlx_ptr, 1800, 900, "MiniRT");
 	i.img = mlx_new_image(i.mlx_ptr, 1800, 900);

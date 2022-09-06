@@ -6,64 +6,13 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:50:52 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/02 15:22:47 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/06 08:11:44 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-int	ft_putnbr(int nb, int fd)
-{
-	int				count;
-	unsigned int	nbr;
-
-	count = 0;
-	if (nb < 0)
-	{
-		count += ft_putchar_fd('-', fd);
-		nbr = (unsigned int)(nb * -1);
-	}
-	else
-		nbr = (unsigned int)nb;
-	if (nbr >= 10)
-	{
-		count += ft_putnbr(nbr / 10);
-		nbr = nbr % 10;
-	}
-	if (nbr < 10)
-	{
-		count += ft_putchar_fd(nbr + 48, fd);
-	}
-	return (count);
-}
-
-void    print_error_exit(char *e, int line_err,int exit_status)
-{
-    ft_putendl_fd(e, 2);
-	if (line_err)
-	{
-    	ft_putendl_fd("\n line", 2);
-		ft_putnbr_fd(line_err, 2);
-    	ft_putendl_fd("\n", 2);
-	}
-    exit (exit_status);
-}
-// Si vous rencontrez un quelconque problème de configuration dans le fichier, 
-// votre programme doit se fermer correctement et renvoyer "Error\n" suivi 
-// d’un message explicite de votre choix.
-
-void	check_arg(char *scene)
-{
-	if (ft_strlen(scene) < 4 || (!ft_strchr(scene, '.')))
-		print_error_exit("Error\nArgument invalid", 1);
-	if (ft_ft_strcmp(ft_strrchr(av[1], '.'), ".rt", 3) != 0)
-		print_error_exit("Error\nType de scene invalide (.rt), 1");
-}
-// - Couleurs R,G,B dans le range [0-255] : 10, 0, 255
-// check_colors
-//get colors
-
-t_objs	init_q_objs(void)
+t_q_obj	init_q_objs(void)
 {
 	t_q_obj q_obj;
 	
@@ -76,114 +25,87 @@ t_objs	init_q_objs(void)
 	return (q_obj);
 }
 
+void	print_tab(char **tab)
+{
+	int i = -1;
+
+	while (tab[++i])
+	{
+		printf("%s", tab[i]);
+		printf("\n");
+	}
+	printf("fiiiiiiiiin\n");
+}
+
+void	detect_object(char **obj_info, t_q_obj *q_obj, int l_nb)
+{
+	if (!ft_strcmp(obj_info[0], "A"))
+		check_lumiere_ambiente(obj_info, &q_obj->a, l_nb);
+	else if (!ft_strcmp(obj_info[0], "C"))
+		check_camera(obj_info, &q_obj->c, l_nb);
+	else if (!ft_strcmp(obj_info[0], "L"))
+		check_lumiere(obj_info, &q_obj->l, l_nb);
+	else if (!ft_strcmp(obj_info[0], "sp"))
+		check_sphere(obj_info, &q_obj->sp, l_nb);
+	else if (!ft_strcmp(obj_info[0], "pl"))
+		check_plane(obj_info, &q_obj->pl, l_nb);
+	else if (!ft_strcmp(obj_info[0], "cy"))
+		check_cylindre(obj_info, &q_obj->cy, l_nb);
+	else 
+	{
+		free_tab(obj_info);
+		print_error_exit("Error\nType d'objet inconue", l_nb, 1);
+	}
+	free_tab(obj_info);
+}
+
+// print_tab(obj_info);
+void	check_scene(char *scene_file, t_q_obj *q_obj)
+{
+	char	**obj_info;
+	char	*line;
+	int		l_nb;
+	int		fd;
+	
+	fd = open(scene_file, O_RDONLY);
+	if (fd == -1)
+		print_error_exit("Error\nPendant l'ouverture de fichier", 0, 1);
+	l_nb = 0;
+	line = get_next_line(fd);
+	while (line)
+	{
+		l_nb++;
+		if (is_it_empty_line(&line, fd))
+			continue ;
+		obj_info = ft_split_set(line, WHITE_SPACES);
+		free (line);
+		detect_object(obj_info, q_obj, l_nb);
+		line = get_next_line(fd);
+	}
+	close (fd);
+}
+
 // • Votre programme doit prendre en premier argument une description de scène avec un fichier .rt.
 // ◦ Chaque type d’élément est séparé par un ou plusieurs retour(s) à la ligne.
 // ◦ Chaque type d’information d’un élément peut être séparé par un ou plusieurs
 // espace(s).
 // ◦ Les élements peuvent être mis dans n’importe quel ordre dans le fichier.
 // ◦ Les éléments qui commencent par une lettre majuscule ne peuvent être déclarés qu’une seule fois dans la scène.
-t_set	*parsing(char *scene)
+t_set	*parsing(char *scene_file)
 {
-	int		fd;
-	int		l_nb;
-	char *	line;
+	// int		fd;
 	t_q_obj q_obj;
-	int		i = 2;
-	char **	obj_info;
+	// t_set	*set;
+	// int		i = 1;
 
-	check_arg(scene);
+	check_arg(scene_file);
 	q_obj = init_q_objs();
-	while (i-- > 0)
-	{
-		fd = open(scene, O_RDONLY);
-		if (fd == -1)
-			print_error_exit("Error\nPendant l'ouverture de fichier");
-		l_nb = 0;
-		line = get_next_line(fd);
-		// checkmap;
-		while (line)
-		{
-			l_nb++;
-			if (line[0] == '\n')//ligne vide
-			{
-				free(line);
-				line = get_next_line(fd);
-				continue ;
-			}
-			obj_info = ft_split_set(line, " \t")
-			// if (!ft_strcmp(line[i], "A"))
-			if (!ft_strcmp(obj_info[0], "A"))
-			{
-				if (ft_tab_len(obj_info) != 3)
-				{
-					free_tab(obj_info);
-					print_error_exit("Error\nQuantité des informations ne correspondent pas au type d'objet", l_nb, 1);
-				}
-				q_obj.a++
-				if (q_obj.a > 1)
-					print_error_exit("Error\n1 Lumière ambiente maximum", l_nb, 1);
-				check_range_ambiante(obj_info[1])
-				check_colors(obj_info[2])
-					{
-						tab_col = ft_split(obj_info[2], ',')
-						if (ft_tab_len(tab_col) != 3)
-							print_error_exit("Error\nIl faut 3 infos pour la couleur [0,255]", l_nb, 1);
-						if (atoi(tab_col[0]) < 0 || atoi(tab_col[0] > 255)
-						|| (atoi(tab_col[1]) < 0 || atoi(tab_col[1] > 255)
-						|| (atoi(tab_col[2]) < 0 || atoi(tab_col[2] > 255))
-						print_error_exit("Error\nCouleurs R,G,B doivent être dans le range [0,255]", l_nb, 1);
-					}
-					free (tab_col)
-				// check_range()
-				// if (!strncmp(obj_inf[1], "[0.0,1.0]")
-				// if ((obj_inf[1][0] == '0' || obj_inf[1][0] == '1') && obj_inf[1][1] == '.' && obj_inf[1][2])
-				// else if (!ft_strncmp(obj_info[1], , 1)
-				// if (!ft_strncmp(obj_info[1], , 1)
-			}
-//CAMERA
-			if (!ft_strcmp(line[i], "C"))
-			{
-				if (ft_words(line) != 4)
-					print_error_exit("Error\nQuantité des informations ne correspondent pas au type d'objet", , l_nb, 1);
-				q_obj.c++
-				if (q_obj.c > 1)
-					print_error_exit("Error\n1 Camera maximum", l_nb, 1);
-				// check_vec_orientation(obj_info[2]) //-1 ,1 (0.0, 0.0, 0.5)
-				// check_fov(obj_info[3]) //0,180
-				check_coordonees(obj_info)
-			}
-			if (!ft_strcmp(line[i], "L"))
-			{
-				if (ft_words(line) != 4)
-					print_error_exit("Error\nQuantité des informations ne correspondent pas au type d'objet", , l_nb, 1);
-				q_obj.l++
-				if (q_obj.l > 1)
-					print_error_exit("Error\n1 Lumière maximum", l_nb, 1);
-			}
-			if (!ft_strcmp(line[i], "sp"))
-			{
-				if (ft_words(line) != 4)
-					print_error_exit("Error\nQuantité des informations ne correspondent pas à la Sphere", , l_nb, 1);
-			}
-			if (!ft_strcmp(line[i], "pl"))
-			{
-				if (ft_words(line) != 4)
-					print_error_exit("Error\nQuantité des informations ne correspondent pas au Plan", , l_nb, 1);
-				q_obj.pl++
-			}
-			if (!ft_strcmp(line[i], "cy"))
-			{
-				if (ft_words(line) != 6)
-					print_error_exit("Error\nQuantité des informations ne correspondent pas au Cylindre", , l_nb, 1);
-				q_obj.cy++
-			}
-			free (line);
-			line = get_next_line(fd);
-		}
-	close (fd);
-	}
-	
-	
+	check_scene(scene_file, &q_obj);
+	// while (i-- > 0)
+	// {
+	// }
+	return (NULL);
+}
 // void	ft_read_map(t_map *m)
 // {
 // 	char	*line;

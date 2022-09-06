@@ -6,93 +6,40 @@
 #    By: mpons <mpons@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/04 14:25:48 by mpons             #+#    #+#              #
-#    Updated: 2022/09/02 11:16:11 by mpons            ###   ########.fr        #
+#    Updated: 2022/09/03 21:46:57 by mpons            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		= ft_isalpha.c\
-			  ft_isdigit.c\
-			  ft_isalnum.c\
-			  ft_isascii.c\
-			  ft_isprint.c\
-			  ft_strlen.c\
-			  ft_memset.c\
-			  ft_bzero.c\
-			  ft_memcpy.c\
-			  ft_memmove.c\
-			  ft_strlcpy.c\
-			  ft_strlcat.c\
-			  ft_toupper.c\
-			  ft_tolower.c\
-			  ft_strchr.c\
-			  ft_strrchr.c\
-			  ft_strncmp.c\
-			  ft_strcmp.c\
-			  ft_memchr.c\
-			  ft_memcmp.c\
-			  ft_strnstr.c\
-			  ft_atoi.c\
-			  ft_calloc.c\
-			  ft_strdup.c\
-			  ft_substr.c\
-			  ft_strjoin.c\
-			  ft_strtrim.c\
-			  ft_split.c\
-			  ft_itoa.c\
-			  ft_strmapi.c\
-			  ft_striteri.c\
-			  ft_putchar_fd.c\
-			  ft_putstr_fd.c\
-			  ft_putendl_fd.c\
-			  ft_putnbr_fd.c\
-			  ft_strchr_set.c\
-			  ft_strjoin_free.c\
-			  get_next_line.c\
-
-BONUS		= ft_lstnew.c\
-			  ft_lstadd_front.c\
-			  ft_lstsize.c\
-			  ft_lstlast.c\
-			  ft_lstadd_back.c\
-			  ft_lstdelone.c\
-			  ft_lstclear.c\
-			  ft_lstiter.c\
-			  ft_lstmap.c\
-
-OBJS		= ${SRCS:.c=.o}
-
-B_OBJS		= ${BONUS:.c=.o}
-
 NAME 		= libft.a
+CODEDIRS	= . 
 
-CC 			= gcc
-CFLAGS		= -g3 -Wall -Wextra -Werror 
+CC			= gcc
+CFLAGS		= -Wall -Wextra -Werror
 
-.c.o:
-			${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
-
-RM			= rm -f
+CFILES=$(foreach D,$(CODEDIRS),$(wildcard $(D)/*.c))
+OBJECTS=$(patsubst %.c,%.o,$(CFILES))
 
 LIB			= ar rc 
-
 RAN			= ranlib
 
-all:		${NAME}
+all:		$(NAME)
 
-${NAME}: 	${OBJS}
-		 	${LIB} ${NAME} ${OBJS}
-			${RAN} ${NAME}
+${NAME}:	${OBJECTS}
+		 	${LIB} $@ $^
+			${RAN} $@
 
-bonus:		${OBJS} ${B_OBJS}
-		 	${LIB} ${NAME} ${OBJS} ${B_OBJS}
-			${RAN} ${NAME}
+%.o:%.c
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-			${RM} ${OBJS} ${B_OBJS}
+	rm -rf $(OBJECTS)
 
-fclean:		clean
-			${RM} ${NAME}
+fclean:	clean
+	rm -f $(NAME)
 
 re:			fclean all
 
-.PHONY:		all clean fclean re bonus
+.PHONY:		all clean fclean re
+
+
+

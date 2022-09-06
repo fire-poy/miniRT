@@ -1,6 +1,6 @@
 NAME=mini_rt
-CODEDIRS=. ./vector_lib
-INCDIRS=. ./vector_lib/
+CODEDIRS=. ./vector_lib ./parser ./libft
+INCDIRS=. ./vector_lib ./parser ./libft
 
 LIBFT=./libft/libft.a
 LIBFT_DIR=./libft
@@ -21,7 +21,7 @@ OBJECTS=$(patsubst %.c,%.o,$(CFILES))
 
 all: $(NAME)
 
-debug: fclean
+# debug: fclean
 debug: CFLAGS += $(DEBUG_CFLAGS)
 debug: MLX_FLAGS += $(DEBUG_CFLAGS)
 debug: $(NAME)
@@ -57,5 +57,9 @@ diff:
 norm:
 	norminette -d $(CODEDIRS)
 
+run: all
+	./$(NAME)
+
 # add .PHONY so that the non-targetfile - rules work even if a file with the same name exists.
-.PHONY: all clean re diff debug norm
+
+.PHONY: all clean re diff debug norm run
