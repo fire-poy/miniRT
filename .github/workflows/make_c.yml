@@ -9,13 +9,13 @@ on:
 jobs:
   build:
 
-  runs-on: macos-latest
+    runs-on: macos-latest
 
-  steps:
-  - uses: actions/checkout@v3
-  - name: make
-    run: make
-  - name: fclean  
-    run: fclean
-  - name: sanitize
-    run: make debug
+    steps:
+    - uses: actions/checkout@v3
+    - name: make
+      run: make
+    - name: fclean  
+      run: fclean
+    - name: sanitize
+      run: make debug
