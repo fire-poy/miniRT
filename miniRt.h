@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/09/02 13:56:14 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/06 08:27:52 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,16 +103,6 @@ typedef struct mlx_instance
 	int		line_length;
 	int		endian;
 }		t_mlx;
-
-typedef struct s_set
-{
-	t_sp		*sp_list;
-	t_cyl		*cyl_list;
-	t_plan		*plan_list;
-	t_light		light;
-	t_ambiant	ambiant;
-	t_camera	cam;
-}	t_set;
 
 t_set	*parsing(char *scene);
 void	my_pxl_put(t_mlx *d, int x, int y, int color);

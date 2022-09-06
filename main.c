@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 10:39:17 by slott             #+#    #+#             */
-/*   Updated: 2022/09/06 08:16:06 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/06 08:26:18 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	my_pxl_put(t_mlx *d, int x, int y, int color)
 	dst = d->addr + (y * d->line_length + x * (d->bpp / 8));
 	*(unsigned int *)dst = color;
 }
-
-inst = 0;
 
 t_vect	color(t_sp sp, t_ray r)
 {
