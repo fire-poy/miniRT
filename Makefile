@@ -61,4 +61,5 @@ run: all
 	./$(NAME)
 
 # add .PHONY so that the non-targetfile - rules work even if a file with the same name exists.
+
 .PHONY: all clean re diff debug norm run
