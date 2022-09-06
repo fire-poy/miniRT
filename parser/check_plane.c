@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:01:21 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/06 08:15:15 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/06 13:40:50 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	check_plane(char **obj_info, int *q_obj, int l_nb)
 	if (ft_tab_len(obj_info) != 4)
 	{
 		free_tab(obj_info);
-		print_error_exit("Error\nQuantité des informations ne correspondent pas au type d'objet", l_nb, 1);//plane
+		print_error_exit(ERR_TYPE, l_nb, 1);
 	}
 	(*q_obj)++;
 	check_coordonees(obj_info, obj_info[1], l_nb);

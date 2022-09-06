@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:06:50 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/06 08:15:31 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/06 13:38:35 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	check_cylindre(char **obj_info, int *q_obj, int l_nb)
 	if (ft_tab_len(obj_info) != 6)
 	{
 		free_tab(obj_info);
-		print_error_exit("Error\nQuantité des informations ne correspondent pas au Cylindre", l_nb, 1);
+		print_error_exit(ERR_TYPE, l_nb, 1);
 	}
 	(*q_obj)++;
 	check_coordonees(obj_info, obj_info[1], l_nb);
@@ -38,4 +38,3 @@ void	check_cylindre(char **obj_info, int *q_obj, int l_nb)
 	check_hauteur(obj_info, obj_info[4], l_nb);
 	check_colors(obj_info, obj_info[5], l_nb);
 }
-

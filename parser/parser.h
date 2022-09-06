@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:18:48 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/06 11:55:50 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/06 15:28:25 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,50 +23,43 @@
 
 # ifndef T_SET
 #  define T_SET
-	typedef struct s_set	t_set;	
+
+typedef struct s_set	t_set;
 # endif
 
+# define ERR_COLOR "Error\nIl faut 3 infos pour la couleur [R,G,B]"
+# define ERR_COLOR_R "Error\nCe n'est pas un numero [0,255]"
+# define ERR_COLOR_R2 "Error\nCouleurs R,G,B doivent être dans le range [0,255]"
+# define ERR_TYPE "Error\nQuantite des info ne match pas au type d'objet"
+# define ERR_COORD "Error\nIl faut 3 infos pour les coordonnées [x,y,z]"
 # define WHITE_SPACES " \t\v\f\r\n"
 
 typedef struct s_q_obj
 {
-	int	a; //ambiant
-	int	c; //camera
-	int	l; //light
-	int	sp; //sphere
-	int	pl;//plan
-	int	cy; //cylindre
-	// t_scene *first;
+	int	a;
+	int	c;
+	int	l;
+	int	sp;
+	int	pl;
+	int	cy;
 }	t_q_obj;
 
-//mettre scene dans obj?
-// typedef	struct s_scene t_scene;
-
-// struct s_scene
-// {
-// 	char	*line;
-// 	// char	**infos;
-// 	int		type; //SPHERE
-// 	int		idx;//2 == q_obj.sp
-// 	t_scene	*next;
-// }	;
-//2eme spere
-// - [ ] Dessiner le probleme
-// 	- [ ] dividir problema en subproblemas
-// 	- [ ] **champion du pseudoCode**
-
+// utils
 void	print_tab(char **tab);
 void	print_obj(t_q_obj *q_obj);
 int		ft_putnbr(int nb, int fd);
 void	print_error_exit(char *e, int line_err, int exit_status);
+void	free_and_error(char **obj_info, char **tab_col, char *err, int l_nb);
 void	check_arg(const char *scene);
 int		is_it_empty_line(char **line, int fd);
 int		is_in_range(float n, float min, float max);
 void	check_colors(char **obj_info, char *l_color, int l_nb);
 
 // CHECK SCENE
+void	check_scene(char *scene_file, t_q_obj *q_obj);
+
 //lumiere ambiante
-void	check_lumnosité(char **obj_info, char *lumnosité, int l_nb);
+void	check_lumnosite(char **obj_info, char *lumnosite, int l_nb);
 void	check_lumiere_ambiente(char **obj_info, int *q_l, int l_nb);
 
 //camera
@@ -89,9 +82,6 @@ void	check_plane(char **obj_info, int *q_obj, int l_nb);
 //cylindre
 void	check_cylindre(char **obj_info, int *q_obj, int l_nb);
 
-// scene
-void	check_scene(char *scene_file, t_q_obj *q_obj);
-
 // GET SCENE
 t_vect	get_vector_from_string(char *rgb);
 void	get_scene(char *scene_file, t_set *set);
@@ -102,9 +92,5 @@ void	get_lumiere(t_set *set, char **obj_info);
 void	get_sphere(t_set *set, char **obj_info);
 void	get_plane(t_set *set, char **obj_info);
 void	get_cylindre(t_set *set, char **obj_info);
-
-
-
-
 
 #endif

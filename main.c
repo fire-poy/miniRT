@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 10:39:17 by slott             #+#    #+#             */
-/*   Updated: 2022/09/06 13:04:30 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/06 15:27:57 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,6 @@ void	init_set(t_set *set)
 {
 	set->win.horizontal = init_vec(4, 0, 0);
 	set->win.vertical = init_vec(0, 2, 0);
-	// set->cam.pos = init_vec(0, 0, 0);
-	// set->cam.fov = 90;
-	// set->cam.dir = init_vec(0, 0, 1);
-	// fov(set);
-	// set->sp_list = ft_calloc(2, sizeof(t_sp));
-	// set->sp_list[0].c = init_vec(0, 0, -3);
-	// set->sp_list[0].r = 0.5;
-	// set->sp_list[0].rgb = init_vec(1, 0, 0);
 }
 
 int	main(int ac, char **av)

@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:50:52 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/06 11:58:37 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/06 15:06:39 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 t_q_obj	init_q_objs(void)
 {
-	t_q_obj q_obj;
-	
-	q_obj.a = 0; //ambiant
-	q_obj.c = 0; //camera
-	q_obj.l = 0; //light
-	q_obj.sp = 0; //sphere
-	q_obj.pl = 0; //plan
-	q_obj.cy = 0; //cylindre
+	t_q_obj	q_obj;
+
+	q_obj.a = 0;
+	q_obj.c = 0;
+	q_obj.l = 0;
+	q_obj.sp = 0;
+	q_obj.pl = 0;
+	q_obj.cy = 0;
 	return (q_obj);
 }
 
@@ -40,7 +40,7 @@ void	calloc_scene_obj(t_set *set, t_q_obj *q_obj)
 // print_obj(&q_obj);
 void	parsing(char *scene_file, t_set *set)
 {
-	t_q_obj q_obj;
+	t_q_obj	q_obj;
 
 	check_arg(scene_file);
 	q_obj = init_q_objs();
