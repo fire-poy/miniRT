@@ -1,6 +1,7 @@
 NAME=mini_rt
 CODEDIRS= ./vector_lib ./parser ./libft .
 INCDIRS= ./vector_lib ./parser ./libft .
+NORM= *.c *.h ./libft ./vector_lib ./parser 
 
 LIBFT=./libft/libft.a
 LIBFT_DIR=./libft
@@ -55,7 +56,7 @@ diff:
 	@git diff --stat
 
 norm:
-	norminette -d $(CODEDIRS)
+	norminette -d $(NORM)
 
 run: all
 	./$(NAME)

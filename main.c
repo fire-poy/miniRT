@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 10:39:17 by slott             #+#    #+#             */
-/*   Updated: 2022/09/06 12:03:20 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/06 13:04:30 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ void	render(t_mlx *i, t_set *set)
 
 void	init_set(t_set *set)
 {
+	set->win.horizontal = init_vec(4, 0, 0);
+	set->win.vertical = init_vec(0, 2, 0);
 	// set->cam.pos = init_vec(0, 0, 0);
 	// set->cam.fov = 90;
 	// set->cam.dir = init_vec(0, 0, 1);
 	// fov(set);
-	set->win.horizontal = init_vec(4, 0, 0);
-	set->win.vertical = init_vec(0, 2, 0);
 	// set->sp_list = ft_calloc(2, sizeof(t_sp));
 	// set->sp_list[0].c = init_vec(0, 0, -3);
 	// set->sp_list[0].r = 0.5;
@@ -88,12 +88,13 @@ int	main(int ac, char **av)
 		print_error_exit("Usage: ./miniRT scene.rt", 0 , 1);
 	parsing(av[1], &set);
 	i.mlx_ptr = mlx_init();
-	i.win_ptr = mlx_new_window(i.mlx_ptr, 1800, 900, "MiniRT");
-	i.img = mlx_new_image(i.mlx_ptr, 1800, 900);
+	i.win_ptr = mlx_new_window(i.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "MiniRT");
+	i.img = mlx_new_image(i.mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	i.addr = mlx_get_data_addr(i.img, &i.bpp, &i.line_length, &i.endian);
 	init_set(&set);
 	render(&i, &set);
 	mlx_key_hook(i.win_ptr, key_hook, NULL);
+	mlx_hook(i.win_ptr, 17, 0, exit_hook, NULL);
 	mlx_loop(i.mlx_ptr);
 	//free set
 	return (0);

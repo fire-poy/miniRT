@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/09/06 11:57:55 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/06 13:04:50 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include "libft/libft.h"
 # include "vector_lib/vector.h"
 # include "parser/parser.h"
+
+#define WIN_WIDTH 1800
+#define WIN_HEIGHT 900
 
 typedef struct s_plan
 {
@@ -113,6 +116,7 @@ void	init_set(t_set *set);
 void	render(t_mlx *i, t_set *set);
 void	fov(t_set *set);
 int		key_hook(int keycode);
+int		exit_hook(void);
 //void	*ft_calloc(size_t count, size_t size);
 //void	ft_bzero(void *s, size_t n);
 
