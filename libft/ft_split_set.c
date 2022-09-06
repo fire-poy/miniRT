@@ -6,19 +6,19 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 22:05:11 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/03 22:38:06 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/05 13:12:23 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_words(const char *s, char *set)
+int	ft_words_set(const char *s, char *set)
 {	
 	int	i;
 	int	word;
 
 	word = 0;
-	i = -1;
+	i = 0;
 	if (set == NULL)
 		return (1);
 	while (s[i])
@@ -42,7 +42,7 @@ static int	ft_w_copy(char **tab, char *s, char *set)
 	int	debut;
 
 	word = 0;
-	i = -1;
+	i = 0;
 	j = -1;
 	if (set == NULL)
 		return (1);
@@ -69,7 +69,7 @@ char	**ft_split_set(char *s, char *set)
 
 	if (!s)
 		return (NULL);
-	words = ft_words(s, set);
+	words = ft_words_set(s, set);
 	if (words == 0)
 		return (NULL);
 	tab = malloc((words + 1) * sizeof(char *));

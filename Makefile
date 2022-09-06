@@ -1,6 +1,6 @@
 NAME=mini_rt
-CODEDIRS=. ./vector_lib ./parser
-INCDIRS=. ./vector_lib ./parser 
+CODEDIRS=. ./vector_lib ./parser ./libft
+INCDIRS=. ./vector_lib ./parser ./libft
 
 LIBFT=./libft/libft.a
 LIBFT_DIR=./libft
@@ -21,7 +21,7 @@ OBJECTS=$(patsubst %.c,%.o,$(CFILES))
 
 all: $(NAME)
 
-debug: fclean
+# debug: fclean
 debug: CFLAGS += $(DEBUG_CFLAGS)
 debug: MLX_FLAGS += $(DEBUG_CFLAGS)
 debug: $(NAME)

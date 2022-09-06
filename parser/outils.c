@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 20:56:36 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/03 22:00:58 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/05 13:21:30 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void    print_error_exit(char *e, int line_err,int exit_status)
     ft_putendl_fd(e, 2);
 	if (line_err)
 	{
-    	ft_putendl_fd("\n line", 2);
+    	ft_putstr_fd("line ", 2);
 		ft_putnbr_fd(line_err, 2);
-    	ft_putendl_fd("\n", 2);
+    	ft_putendl_fd("", 2);
 	}
     exit (exit_status);
 }

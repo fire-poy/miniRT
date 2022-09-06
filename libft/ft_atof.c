@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 16:18:46 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/03 20:16:54 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/05 13:43:04 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_is_it_white_space(char c)
 {
 	if (c == ' ' || c == '\t' || c == '\v'
-		|| c == '\f' || c == '\r')
+		|| c == '\f' || c == '\r' || c == '\n')
 		return (1);
 	else
 		return (0);
@@ -37,6 +37,7 @@ float	get_sign(char *s, int *i)
 	return (sign);
 }
 
+//il manque check max and min
 int	ft_is_it_float(char *s)
 {
 	int	i;
@@ -50,10 +51,11 @@ int	ft_is_it_float(char *s)
 		i++;
 	if (s[i] == '-' || s[i] == '+')
 		i++;
-	while(ft_isdigit(s[i++]))
+	while(ft_isdigit(s[i]))//2.g
 	{
+		i++;
 		j++;
-		if (s[i] && s[i] == '.' && ft_isdigit(s[i + 1]))
+		if (s[i] && s[i] == '.' && ft_isdigit(s[i + 1]))//ft_is_digit-> en plus pas null
 		{
 			if (++point > 1)
 				return (0);
