@@ -3,31 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
+/*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 16:42:36 by slott             #+#    #+#             */
-/*   Updated: 2022/09/06 08:28:37 by mpons            ###   ########.fr       */
+/*   Created: 2022/09/06 15:03:01 by slott             #+#    #+#             */
+/*   Updated: 2022/09/06 15:04:57 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "miniRt.h"
 
-// void	*ft_calloc(size_t count, size_t size)
-// {
-// 	void	*out;
+// Renvoie les coordonees du point en 't' du rayon 'r'
 
-// 	out = malloc(count * size);
-// 	if (out == NULL)
-// 		return (NULL);
-// 	ft_bzero(out, count * size);
-// 	return (out);
-// }
+t_vect	point_at(t_ray r, float t)
+{
+	t_vect	point;
 
-// void	ft_bzero(void *s, size_t n)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	while (i < n)
-// 		*(unsigned char *)(s + i++) = 0;
-// }
+	point = plus(2, r.pos, fois_x(r.dir, t));
+	return (point);
+}

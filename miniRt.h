@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/09/06 13:04:50 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/06 15:11:22 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,12 +112,9 @@ void	my_pxl_put(t_mlx *d, int x, int y, int color);
 t_vect	color(t_sp sp, t_ray r);
 float	hit_sp(t_sp sp, t_ray ray);
 t_vect	point_at(t_ray r, float t);
-void	init_set(t_set *set);
 void	render(t_mlx *i, t_set *set);
 void	fov(t_set *set);
 int		key_hook(int keycode);
 int		exit_hook(void);
-//void	*ft_calloc(size_t count, size_t size);
-//void	ft_bzero(void *s, size_t n);
 
 #endif
