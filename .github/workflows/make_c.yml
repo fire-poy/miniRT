@@ -16,5 +16,6 @@ jobs:
     - name: make
       run: make
     - name: fclean  
+      run: fclean
     - name: sanitize
       run: make debug
