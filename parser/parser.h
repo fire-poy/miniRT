@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:18:48 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/06 08:10:37 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/06 11:55:50 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 # define SPHERE 3
 # define PLAN 4
 # define CYLINDRE 5
+
+# ifndef T_SET
+#  define T_SET
+	typedef struct s_set	t_set;	
+# endif
 
 # define WHITE_SPACES " \t\v\f\r\n"
 
@@ -35,21 +40,23 @@ typedef struct s_q_obj
 }	t_q_obj;
 
 //mettre scene dans obj?
-typedef	struct s_scene t_scene;
+// typedef	struct s_scene t_scene;
 
-struct s_scene
-{
-	char	*line;
-	// char	**infos;
-	int		type; //SPHERE
-	int		idx;//2 == q_obj.sp
-	t_scene	*next;
-}	;
+// struct s_scene
+// {
+// 	char	*line;
+// 	// char	**infos;
+// 	int		type; //SPHERE
+// 	int		idx;//2 == q_obj.sp
+// 	t_scene	*next;
+// }	;
 //2eme spere
 // - [ ] Dessiner le probleme
 // 	- [ ] dividir problema en subproblemas
 // 	- [ ] **champion du pseudoCode**
 
+void	print_tab(char **tab);
+void	print_obj(t_q_obj *q_obj);
 int		ft_putnbr(int nb, int fd);
 void	print_error_exit(char *e, int line_err, int exit_status);
 void	check_arg(const char *scene);
@@ -57,6 +64,7 @@ int		is_it_empty_line(char **line, int fd);
 int		is_in_range(float n, float min, float max);
 void	check_colors(char **obj_info, char *l_color, int l_nb);
 
+// CHECK SCENE
 //lumiere ambiante
 void	check_lumnosité(char **obj_info, char *lumnosité, int l_nb);
 void	check_lumiere_ambiente(char **obj_info, int *q_l, int l_nb);
@@ -83,6 +91,19 @@ void	check_cylindre(char **obj_info, int *q_obj, int l_nb);
 
 // scene
 void	check_scene(char *scene_file, t_q_obj *q_obj);
+
+// GET SCENE
+t_vect	get_vector_from_string(char *rgb);
+void	get_scene(char *scene_file, t_set *set);
+void	get_objects(char **obj_info, t_set *set);
+void	get_lumiere_ambiente(t_set *set, char **obj_info);
+void	get_camera(t_set *set, char **obj_info);
+void	get_lumiere(t_set *set, char **obj_info);
+void	get_sphere(t_set *set, char **obj_info);
+void	get_plane(t_set *set, char **obj_info);
+void	get_cylindre(t_set *set, char **obj_info);
+
+
 
 
 
