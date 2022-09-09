@@ -6,11 +6,19 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:50:52 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/06 15:06:39 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/09 18:56:37 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+void	check_arg(const char *scene)
+{
+	if (ft_strlen(scene) < 4 || (!ft_strchr(scene, '.')))
+		print_error_exit("Error\nArgument invalid", 0, 1);
+	if (ft_strcmp(ft_strrchr(scene, '.'), ".rt") != 0)
+		print_error_exit("Error\nType de scene invalide (.rt)", 0, 1);
+}
 
 t_q_obj	init_q_objs(void)
 {
@@ -29,8 +37,6 @@ void	calloc_scene_obj(t_set *set, t_q_obj *q_obj)
 {
 	if (q_obj->sp > 0)
 		set->sp_list = ft_calloc(q_obj->sp + 1, sizeof(t_sp));
-	// if (!sp_list)
-	// 	print_error_exit("error malloc scene");
 	if (q_obj->pl > 0)
 		set->plan_list = ft_calloc(q_obj->pl + 1, sizeof(t_plan));
 	if (q_obj->cy > 0)

@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 10:50:22 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/05 12:40:51 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/09 18:34:27 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,5 @@ void	free_tab_tab(char ***tab);
 int		ft_tab_len(char **t);
 int		ft_words_set(const char *s, char *set);
 int		ft_is_it_white_space(char c);
-
-
-
-
 
 #endif

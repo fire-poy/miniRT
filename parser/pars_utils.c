@@ -6,35 +6,42 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 10:34:30 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/06 15:20:59 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/09 18:54:20 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-void	print_tab(char **tab)
+int	ft_is_it_int(char *s)
 {
 	int	i;
+	int	j;
+	int	point;
 
-	i = -1;
-	while (tab[++i])
-	{
-		printf("%s", tab[i]);
-		printf("\n");
-	}
-	printf("fiiiiiiiiin\n");
+	i = 0;
+	j = 0;
+	point = 0;
+	while (ft_is_it_white_space(s[i]))
+		i++;
+	if (s[i] == '-' || s[i] == '+')
+		i++;
+	while (ft_isdigit(s[i]))
+		i++;
+	if (s[i] == '\0' || ft_is_it_white_space(s[i]))
+		return (1);
+	else
+		return (0);
 }
 
-void	print_obj(t_q_obj *q_obj)
+int	is_in_range(float n, float min, float max)
 {
-	printf("obj c = %d\n", q_obj->c);
-	printf("obj l = %d\n", q_obj->l);
-	printf("obj a = %d\n", q_obj->a);
-	printf("obj sp = %d\n", q_obj->sp);
-	printf("obj pl = %d\n", q_obj->pl);
-	printf("obj cy = %d\n", q_obj->cy);
+	if (n < min || n > max)
+		return (0);
+	return (1);
 }
 
+//Si obj_info != NULL free_tab, la meme chose pour tab_col,
+// apres print err suivi de nro ligne et exit(1)
 void	free_and_error(char **obj_info, char **tab_col, char *err, int l_nb)
 {
 	if (obj_info)
@@ -43,9 +50,11 @@ void	free_and_error(char **obj_info, char **tab_col, char *err, int l_nb)
 		free_tab(tab_col);
 	print_error_exit(err, l_nb, 1);
 }
-//ajoute pointeur foncion sur free fonction
-// ajouter Error: au debut??
-//print error and line?
+
+// Si vous rencontrez un quelconque problème de configuration dans le fichier, 
+// votre programme doit se fermer correctement et renvoyer "Error\n" suivi 
+// d’un message explicite de votre choix.
+//print error and line
 void	print_error_exit(char *e, int line_err, int exit_status)
 {
 	ft_putendl_fd(e, 2);
@@ -56,15 +65,4 @@ void	print_error_exit(char *e, int line_err, int exit_status)
 		ft_putendl_fd("", 2);
 	}
 	exit (exit_status);
-}
-
-// Si vous rencontrez un quelconque problème de configuration dans le fichier, 
-// votre programme doit se fermer correctement et renvoyer "Error\n" suivi 
-// d’un message explicite de votre choix.
-void	check_arg(const char *scene)
-{
-	if (ft_strlen(scene) < 4 || (!ft_strchr(scene, '.')))
-		print_error_exit("Error\nArgument invalid", 0, 1);
-	if (ft_strcmp(ft_strrchr(scene, '.'), ".rt") != 0)
-		print_error_exit("Error\nType de scene invalide (.rt)", 0, 1);
 }

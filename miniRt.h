@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/09/06 13:04:50 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/09 19:04:55 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include "vector_lib/vector.h"
 # include "parser/parser.h"
 
-#define WIN_WIDTH 1800
-#define WIN_HEIGHT 900
+# define WIN_WIDTH 1800
+# define WIN_HEIGHT 900
 
 typedef struct s_plan
 {
@@ -53,7 +53,7 @@ typedef struct s_light
 	t_vect	rgb;
 }					t_light;
 
-typedef	struct s_cyl
+typedef struct s_cyl
 {
 	t_vect	pos;
 	t_vect	dir;
@@ -114,10 +114,8 @@ float	hit_sp(t_sp sp, t_ray ray);
 t_vect	point_at(t_ray r, float t);
 void	init_set(t_set *set);
 void	render(t_mlx *i, t_set *set);
-void	fov(t_set *set);
 int		key_hook(int keycode);
 int		exit_hook(void);
-//void	*ft_calloc(size_t count, size_t size);
-//void	ft_bzero(void *s, size_t n);
+void	fov(t_set *set);
 
 #endif

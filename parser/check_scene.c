@@ -6,11 +6,22 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 10:36:16 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/06 13:41:05 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/09 18:51:34 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+int	is_it_empty_line(char **line, int fd)
+{
+	if (*line[0] == '\n')
+	{
+		free(*line);
+		*line = get_next_line(fd);
+		return (1);
+	}
+	return (0);
+}
 
 void	detect_object(char **obj_info, t_q_obj *q_obj, int l_nb)
 {
@@ -27,10 +38,7 @@ void	detect_object(char **obj_info, t_q_obj *q_obj, int l_nb)
 	else if (!ft_strcmp(obj_info[0], "cy"))
 		check_cylindre(obj_info, &q_obj->cy, l_nb);
 	else
-	{
-		free_tab(obj_info);
-		print_error_exit("Error\nType d'objet inconue", l_nb, 1);
-	}
+		free_and_error(obj_info, NULL, "Error\nType d'objet inconue", l_nb);
 	free_tab(obj_info);
 }
 

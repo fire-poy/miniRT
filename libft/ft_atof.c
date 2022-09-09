@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 16:18:46 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/05 13:43:04 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/09 19:00:15 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_is_it_white_space(char c)
 
 float	get_sign(char *s, int *i)
 {
-	float sign;
+	float	sign;
 
 	sign = 1.0f;
 	while (ft_is_it_white_space(s[*i]))
@@ -51,11 +51,11 @@ int	ft_is_it_float(char *s)
 		i++;
 	if (s[i] == '-' || s[i] == '+')
 		i++;
-	while(ft_isdigit(s[i]))//2.g
+	while (ft_isdigit(s[i]))
 	{
 		i++;
 		j++;
-		if (s[i] && s[i] == '.' && ft_isdigit(s[i + 1]))//ft_is_digit-> en plus pas null
+		if (s[i] && s[i] == '.' && ft_isdigit(s[i + 1]))
 		{
 			if (++point > 1)
 				return (0);
@@ -82,7 +82,7 @@ float	ft_atof(char *s)
 	sign = 1.0f * get_sign(s, &i);
 	while (ft_isdigit(s[i]))
 	{
-		value *= 10;//1ere fois value = 0
+		value *= 10;
 		value += s[i++] - '0';
 		if (point == 1)
 			decimal *= 10;
@@ -94,20 +94,3 @@ float	ft_atof(char *s)
 	}
 	return ((value * sign) / decimal);
 }
-// 	while (ft_isdigit(s[i]))
-// 	{
-// 		value *= 10;//1ere fois value = 0
-// 		value += s[i] - '0';
-// 		i++;
-// 	}
-// 	if (s[i++] != '.')
-// 		return (sign * value);
-// 	while (ft_isdigit(s[i]))
-// 	{
-// 		value *= 10;//1ere fois value = 0
-// 		value += s[i] - '0';
-// 		decimal *= 10
-// 		i++;
-// 	}
-// 	return ((value * sign) / decimal);
-// }

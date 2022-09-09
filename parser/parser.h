@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:18:48 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/06 15:28:25 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/09 19:05:54 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PARSER_H
 
 # include "../miniRt.h"
+
 # define AMBIANT 0
 # define CAMERA 1
 # define LIGHT 2
@@ -21,18 +22,24 @@
 # define PLAN 4
 # define CYLINDRE 5
 
-# ifndef T_SET
-#  define T_SET
-
-typedef struct s_set	t_set;
-# endif
+# define WHITE_SPACES " \t\v\f\r\n"
 
 # define ERR_COLOR "Error\nIl faut 3 infos pour la couleur [R,G,B]"
 # define ERR_COLOR_R "Error\nCe n'est pas un numero [0,255]"
 # define ERR_COLOR_R2 "Error\nCouleurs R,G,B doivent être dans le range [0,255]"
 # define ERR_TYPE "Error\nQuantite des info ne match pas au type d'objet"
 # define ERR_COORD "Error\nIl faut 3 infos pour les coordonnées [x,y,z]"
-# define WHITE_SPACES " \t\v\f\r\n"
+# define ERR_FLOAT "Error\nNumero n'est pas un float"
+# define ERR_FLOAT_RANGE "Error\nFloat dehors range [0.0,1.0]"
+# define ERR_FORMAT_N "Error\nFormat numero incorrect"
+# define ERR_F_R_N "Error\nFormat ou range numero incorrect"
+# define ERR_L_AMB_MAX "Error\n1 Lumière ambiente maximum"
+
+# ifndef T_SET
+#  define T_SET
+
+typedef struct s_set	t_set;
+# endif
 
 typedef struct s_q_obj
 {
@@ -54,6 +61,7 @@ void	check_arg(const char *scene);
 int		is_it_empty_line(char **line, int fd);
 int		is_in_range(float n, float min, float max);
 void	check_colors(char **obj_info, char *l_color, int l_nb);
+int		ft_is_it_int(char *s);
 
 // CHECK SCENE
 void	check_scene(char *scene_file, t_q_obj *q_obj);

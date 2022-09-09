@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 10:39:17 by slott             #+#    #+#             */
-/*   Updated: 2022/09/06 15:27:57 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/09 19:04:19 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	render(t_mlx *i, t_set *set)
 			u = (float)x / (float)1800;
 			v = (float)y / (float)900;
 			ray.pos = set->cam.pos;
-			ray.dir = plus(3, set->win.corner, \
-					fois_x(set->win.horizontal, u), fois_x(set->win.vertical, v));
+			ray.dir = plus(3, set->win.corner, fois_x(set->win.horizontal, u),
+					fois_x(set->win.vertical, v));
 			col = color(set->sp_list[0], ray);
 			my_pxl_put(i, x, y, to_color(col));
 		}
@@ -77,7 +77,7 @@ int	main(int ac, char **av)
 	t_set	set;
 
 	if (ac != 2)
-		print_error_exit("Usage: ./miniRT scene.rt", 0 , 1);
+		print_error_exit("Usage: ./miniRT scene.rt", 0, 1);
 	parsing(av[1], &set);
 	i.mlx_ptr = mlx_init();
 	i.win_ptr = mlx_new_window(i.mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "MiniRT");
@@ -88,6 +88,6 @@ int	main(int ac, char **av)
 	mlx_key_hook(i.win_ptr, key_hook, NULL);
 	mlx_hook(i.win_ptr, 17, 0, exit_hook, NULL);
 	mlx_loop(i.mlx_ptr);
-	//free set
 	return (0);
 }
+//free_set
