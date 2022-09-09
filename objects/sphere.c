@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:59:21 by slott             #+#    #+#             */
-/*   Updated: 2022/09/06 13:18:54 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/09 19:32:11 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,4 @@ float	hit_sp(t_sp sp, t_ray ray)
 		t = (-b - sqrt(delta)) / 2 * a;
 		return (t);
 	}
-}
-
-// Renvoie les coordonees du point en 't' du rayon 'r'
-t_vect	point_at(t_ray r, float t)
-{
-	t_vect	point;
-
-	point = plus(2, r.pos, fois_x(r.dir, t));
-	return (point);
 }

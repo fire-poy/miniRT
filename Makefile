@@ -1,6 +1,6 @@
 NAME=mini_rt
-CODEDIRS= ./vector_lib ./parser .
-INCDIRS= ./vector_lib ./parser .
+CODEDIRS= . ./vector_lib ./parser ./objects ./render
+INCDIRS= . ./vector_lib ./parser
 NORM= *.c *.h ./libft ./vector_lib ./parser 
 
 LIBFT=./libft/libft.a
