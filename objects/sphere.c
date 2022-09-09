@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:59:21 by slott             #+#    #+#             */
-/*   Updated: 2022/09/06 15:04:54 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/09 19:32:11 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "miniRt.h"
 
 // Calcule si un rayon "ray" traverse ou non la sphere "sp"
 // Renvoie la ou les valeurs 't' pour lesquels le rayon touche la sphere
-
 float	hit_sp(t_sp sp, t_ray ray)
 {
 	t_vect	oc;

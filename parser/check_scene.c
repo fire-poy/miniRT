@@ -6,11 +6,22 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 10:36:16 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/06 10:37:04 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/09 18:51:34 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+int	is_it_empty_line(char **line, int fd)
+{
+	if (*line[0] == '\n')
+	{
+		free(*line);
+		*line = get_next_line(fd);
+		return (1);
+	}
+	return (0);
+}
 
 void	detect_object(char **obj_info, t_q_obj *q_obj, int l_nb)
 {
@@ -26,27 +37,26 @@ void	detect_object(char **obj_info, t_q_obj *q_obj, int l_nb)
 		check_plane(obj_info, &q_obj->pl, l_nb);
 	else if (!ft_strcmp(obj_info[0], "cy"))
 		check_cylindre(obj_info, &q_obj->cy, l_nb);
-	else 
-	{
-		free_tab(obj_info);
-		print_error_exit("Error\nType d'objet inconue", l_nb, 1);
-	}
+	else
+		free_and_error(obj_info, NULL, "Error\nType d'objet inconue", l_nb);
 	free_tab(obj_info);
 }
 
-// • Votre programme doit prendre en premier argument une description de scène avec un fichier .rt.
+// • Votre programme doit prendre en premier argument une description de scène
+//  avec un fichier .rt.
 // ◦ Chaque type d’élément est séparé par un ou plusieurs retour(s) à la ligne.
 // ◦ Chaque type d’information d’un élément peut être séparé par un ou plusieurs
 // espace(s).
 // ◦ Les élements peuvent être mis dans n’importe quel ordre dans le fichier.
-// ◦ Les éléments qui commencent par une lettre majuscule ne peuvent être déclarés qu’une seule fois dans la scène.
+// ◦ Les éléments qui commencent par une lettre majuscule ne peuvent être 
+// déclarés qu’une seule fois dans la scène.
 void	check_scene(char *scene_file, t_q_obj *q_obj)
 {
 	char	**obj_info;
 	char	*line;
 	int		l_nb;
 	int		fd;
-	
+
 	fd = open(scene_file, O_RDONLY);
 	if (fd == -1)
 		print_error_exit("Error\nPendant l'ouverture de fichier", 0, 1);

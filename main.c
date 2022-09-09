@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 10:39:17 by slott             #+#    #+#             */
-/*   Updated: 2022/09/06 16:26:29 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/09 19:33:58 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ int	main(int ac, char **av)
 	mlx_key_hook(i.win_ptr, key_hook, NULL);
 	mlx_hook(i.win_ptr, 17, 0, exit_hook, NULL);
 	mlx_loop(i.mlx_ptr);
-	//free set
 	return (0);
 }
+//free_set
