@@ -19,4 +19,4 @@ jobs:
             - name: Norminette
               uses: iioel/norminette@v3.3.51-action
               with:
-                args: '-RCheckForbiddenSourceHeader -d *.c *.h ./vector_lib ./parser ./libft'
+                args: '-RCheckForbiddenSourceHeader -d *.c *.h ./libft ./vector_lib ./parser ./objects ./render'
