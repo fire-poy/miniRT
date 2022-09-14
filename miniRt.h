@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/09/14 14:25:56 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/14 14:28:53 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void	parsing(char *scene_file, t_set *set);
 //Mlx
 
 int		key_hook(int keycode);
-int		exit_hoook(void);
+int		exit_hook(void);
 void	my_pxl_put(t_mlx *d, int x, int y, int color);
 
 // Render
