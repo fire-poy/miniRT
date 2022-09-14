@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 10:51:45 by slott             #+#    #+#             */
-/*   Updated: 2022/09/06 13:04:13 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/14 14:23:30 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	key_hook(int keycode)
 	return (0);
 }
 
+//free(g->m->map);
 int	exit_hook(void)
 {
-	// free(g->m->map);
 	exit(0);
 	return (0);
 }

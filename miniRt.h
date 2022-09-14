@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/09/06 16:26:33 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/14 14:25:56 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,18 @@
 # include "vector_lib/vector.h"
 # include "parser/parser.h"
 
-#define WIN_WIDTH 1800
-#define WIN_HEIGHT 900
+# define WIN_WIDTH 1800
+# define WIN_HEIGHT 900
+
+typedef struct s_equation
+{
+	t_vect	oc;
+	float	a;
+	float	b;
+	float	c;
+	float	delta;
+	float	t;
+}					t_equation;
 
 typedef struct s_plan
 {
@@ -53,7 +63,7 @@ typedef struct s_light
 	t_vect	rgb;
 }					t_light;
 
-typedef	struct s_cyl
+typedef struct s_cyl
 {
 	t_vect	pos;
 	t_vect	dir;
@@ -94,6 +104,7 @@ typedef struct s_set
 	t_ambiant	ambiant;
 	t_camera	cam;
 	t_win		win;
+	int			current_id;
 }					t_set;	
 
 typedef struct mlx_instance
@@ -107,14 +118,29 @@ typedef struct mlx_instance
 	int		endian;
 }		t_mlx;
 
+//Parsing
+
 void	parsing(char *scene_file, t_set *set);
-void	my_pxl_put(t_mlx *d, int x, int y, int color);
-t_vect	color(t_set *set, t_ray r);
-float	hit_sp(t_sp sp, t_ray ray);
-t_vect	point_at(t_ray r, float t);
-void	render(t_mlx *i, t_set *set);
-void	fov(t_set *set);
+
+//Mlx
+
 int		key_hook(int keycode);
-int		exit_hook(void);
+int		exit_hoook(void);
+void	my_pxl_put(t_mlx *d, int x, int y, int color);
+
+// Render
+
+t_vect	color(t_set *set, t_ray r);
+void	render(t_mlx *i, t_set *set);
+t_sp	get_closest_sp(t_set *set, t_ray r, int ex, float t_max);
+t_vect	is_in_light(t_set *set, t_vect p, t_vect o_col);
+
+// Objects
+
+float	hit_sp(t_sp sp, t_ray ray);
+void	fov(t_set *set);
+
+// Utils
+t_vect	point_at(t_ray r, float t);
 
 #endif
