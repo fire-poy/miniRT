@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_closest.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 15:46:21 by slott             #+#    #+#             */
-/*   Updated: 2022/09/14 16:11:48 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/15 19:28:00 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,29 @@ t_sp	get_closest_sp(t_set *set, t_ray r, int ex, float t_max)
 	set->current_id = id;
 	return (set->sp_list[id]);
 }
+// typedef	struct s_obj
+// {
+// 	int	type;
+// 	int	idx;
+// 	int	dist;
+// 	/* data */
+// }	t_obj;
+
+
+// int	get_closest(t_set *set, int *type)
+// {
+// 	int	i;
+// 	int	dist;
+// 	t_obj obj;
+
+// 	i = 0;
+// 	dist = 0;
+// 	while (set->sp_list[i])
+// 		get_closest_sp(set, r, -1, 1000000000)//, type); return type
+// 		//j'obtiens la sphere la plus pres
+// 	while (set->plane_list[i]) //je compare avec tous le plan
+// 		get_closest_plane(set, r, 
+// 		// si je trouve un qui soit plus pres je remplace type idx et dist
+// 	while (set->cyl_list[i])
+// 		dist = get_closest_cyl(set, r, -1, 1000000000);
+// }

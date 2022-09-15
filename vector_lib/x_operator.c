@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   e_operator.c                                       :+:      :+:    :+:   */
+/*   x_operator.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 14:23:09 by slott             #+#    #+#             */
-/*   Updated: 2022/09/01 16:15:53 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/15 17:18:30 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "vector.h"
 
 // Ajoute 't' a chaque valeur de v1
-
 t_vect	plus_x(t_vect v1, float t)
 {
 	t_vect	final;
@@ -24,7 +24,6 @@ t_vect	plus_x(t_vect v1, float t)
 }
 
 // Enleve 't' a chaque valeur de v1
-
 t_vect	moins_x(t_vect v1, float t)
 {
 	t_vect	final;
@@ -36,7 +35,6 @@ t_vect	moins_x(t_vect v1, float t)
 }
 
 // Multiplie par 't' chaque valeur de v1
-
 t_vect	fois_x(t_vect v1, float t)
 {
 	t_vect	final;
@@ -48,7 +46,6 @@ t_vect	fois_x(t_vect v1, float t)
 }
 
 // Divise par 't' chaque valeur de v1
-
 t_vect	divis_x(t_vect v1, float t)
 {
 	t_vect	final;

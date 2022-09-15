@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:29:20 by slott             #+#    #+#             */
-/*   Updated: 2022/09/14 16:11:45 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/15 19:39:47 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_vect	color(t_set *set, t_ray r)
 	int		i;
 
 	i = 0;
+// if (get_closest(set, *type) != -1)
 	sp = get_closest_sp(set, r, -1, 1000000000);
 	if (sp.r != 0)
 	{
@@ -39,6 +40,19 @@ t_vect	color(t_set *set, t_ray r)
 	return (col);
 }
 
+
+// typedef struct s_set
+// {
+// 	t_sp		*sp_list;
+// 	t_cyl		*cyl_list;
+// 	t_plan		*plan_list;
+// 	t_light		light;
+// 	t_ambiant	ambiant;
+// 	t_camera	cam;
+// 	t_win		win;
+// 	int			current_id;
+	
+
 void	render(t_mlx *i, t_set *set)
 {
 	t_ray	ray;
@@ -46,7 +60,7 @@ void	render(t_mlx *i, t_set *set)
 	float	v;
 	int		x;
 	int		y;
-
+	
 	x = 0;
 	while (x < 1800)
 	{
@@ -56,12 +70,33 @@ void	render(t_mlx *i, t_set *set)
 			u = (float)x / (float)1800;
 			v = (float)y / (float)900;
 			ray.pos = set->cam.pos;
-			ray.dir = plus(3, set->win.corner, \
+			ray.dir = plus(3, set->win.corner,\
 				fois_x(set->win.horizontal, u), fois_x(set->win.vertical, v));
-			my_pxl_put(i, x, y, to_color(color(set, ray)));
+			// print_vec(ray.pos);
+			// print_vec(ray.dir);
+			my_pxl_put(i, x, y, to_color(color2(set, ray)));
 			y++;
 		}
 		x++;
 	}
+	// x = 0;
+	// while (x < 1800)
+	// {
+	// 	y = 0;
+	// 	while (y < 900)
+	// 	{
+	// 		u = (float)x / (float)1800;
+	// 		v = (float)y / (float)900;
+	// 		ray.pos = set->cam.pos;
+	// 		ray.dir = plus(3, set->win.corner,\
+	// 			fois_x(set->win.horizontal, u), fois_x(set->win.vertical, v));
+	// 		// print_vec(ray.pos);
+	// 		// print_vec(ray.dir);
+	// 		my_pxl_put(i, x, y, to_color(color(set, ray)));
+	// 		y++;
+	// 	}
+	// 	x++;
+	// }
+	
 	mlx_put_image_to_window(i->mlx_ptr, i->win_ptr, i->img, 0, 0);
 }

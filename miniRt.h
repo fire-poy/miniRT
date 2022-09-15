@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/09/14 16:11:50 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/15 19:35:38 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,5 +144,7 @@ void	fov(t_set *set);
 
 // Utils
 t_vect	point_at(t_ray r, float t);
+t_vect	color2(t_set *set, t_ray r);
+
 
 #endif

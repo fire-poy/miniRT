@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:03:01 by slott             #+#    #+#             */
-/*   Updated: 2022/09/14 14:28:48 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/15 17:18:04 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "miniRt.h"
 
 // Renvoie les coordonees du point en 't' du rayon 'r'

@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 14:52:48 by slott             #+#    #+#             */
-/*   Updated: 2022/09/09 14:24:21 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/15 17:18:16 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "vector.h"
 
 //Initialise un vecteur aux valeurs x, y et z
