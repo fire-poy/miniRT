@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/09/09 19:35:28 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/14 14:28:53 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,16 @@
 
 # define WIN_WIDTH 1800
 # define WIN_HEIGHT 900
+
+typedef struct s_equation
+{
+	t_vect	oc;
+	float	a;
+	float	b;
+	float	c;
+	float	delta;
+	float	t;
+}					t_equation;
 
 typedef struct s_plan
 {
@@ -94,6 +104,7 @@ typedef struct s_set
 	t_ambiant	ambiant;
 	t_camera	cam;
 	t_win		win;
+	int			current_id;
 }					t_set;	
 
 typedef struct mlx_instance
@@ -107,14 +118,30 @@ typedef struct mlx_instance
 	int		endian;
 }		t_mlx;
 
+//Parsing
+
 void	parsing(char *scene_file, t_set *set);
-void	my_pxl_put(t_mlx *d, int x, int y, int color);
-t_vect	color(t_set *set, t_ray r);
-float	hit_sp(t_sp sp, t_ray ray);
-t_vect	point_at(t_ray r, float t);
-void	render(t_mlx *i, t_set *set);
+
+//Mlx
+
 int		key_hook(int keycode);
 int		exit_hook(void);
+void	my_pxl_put(t_mlx *d, int x, int y, int color);
+
+// Render
+
+t_vect	color(t_set *set, t_ray r);
+void	render(t_mlx *i, t_set *set);
+
+t_sp	get_closest_sp(t_set *set, t_ray r, int ex, float t_max);
+t_vect	is_in_light(t_set *set, t_vect p, t_vect o_col);
+
+// Objects
+
+float	hit_sp(t_sp sp, t_ray ray);
 void	fov(t_set *set);
+
+// Utils
+t_vect	point_at(t_ray r, float t);
 
 #endif

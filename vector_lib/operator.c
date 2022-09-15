@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:26:53 by slott             #+#    #+#             */
-/*   Updated: 2022/09/09 19:01:33 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/14 14:17:26 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ t_vect	plus(int n, ...)
 	va_list	ptr;
 	int		i;
 
-	i = 0;
-	final = init_vec(0, 0, 0);
+	i = 1;
 	va_start(ptr, n);
+	final = va_arg(ptr, t_vect);
 	while (i < n)
 	{
 		next = va_arg(ptr, t_vect);
@@ -43,9 +43,9 @@ t_vect	moins(int n, ...)
 	va_list	ptr;
 	int		i;
 
-	i = 0;
-	final = init_vec(0, 0, 0);
+	i = 1;
 	va_start(ptr, n);
+	final = va_arg(ptr, t_vect);
 	while (i < n)
 	{
 		next = va_arg(ptr, t_vect);
@@ -66,9 +66,9 @@ t_vect	fois(int n, ...)
 	va_list	ptr;
 	int		i;
 
-	i = 0;
-	final = init_vec(0, 0, 0);
+	i = 1;
 	va_start(ptr, n);
+	final = va_arg(ptr, t_vect);
 	while (i < n)
 	{
 		next = va_arg(ptr, t_vect);
@@ -89,9 +89,9 @@ t_vect	divis(int n, ...)
 	va_list	ptr;
 	int		i;
 
-	i = 0;
-	final = init_vec(0, 0, 0);
+	i = 1;
 	va_start(ptr, n);
+	final = va_arg(ptr, t_vect);
 	while (i < n)
 	{
 		next = va_arg(ptr, t_vect);

@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 16:18:46 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/09 19:00:15 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/14 14:21:57 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ float	get_sign(char *s, int *i)
 }
 
 //il manque check max and min
+//55-> 2.g
+//60-> ft_is_digit-> en plus pas null
 int	ft_is_it_float(char *s)
 {
 	int	i;
@@ -67,6 +69,7 @@ int	ft_is_it_float(char *s)
 	return (0);
 }
 
+//88-> 1ere fois value = 0
 float	ft_atof(char *s)
 {
 	int		i;

@@ -6,7 +6,7 @@
 /*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 14:52:48 by slott             #+#    #+#             */
-/*   Updated: 2022/09/02 12:27:52 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/09 14:24:21 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "vector.h"
@@ -30,6 +30,8 @@ int	to_color(t_vect col)
 {
 	int	final;
 
+	if (col.x > 1 || col.y > 1 || col.z > 1)
+		col = divis_x(col, 255);
 	final = (int)(col.z * 255);
 	final += (int)(col.y * 255) << 8;
 	final += (int)(col.x * 255) << 16;
