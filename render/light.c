@@ -6,7 +6,7 @@
 /*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 13:28:54 by slott             #+#    #+#             */
-/*   Updated: 2022/09/14 14:08:56 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/14 16:02:53 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,14 @@ t_vect	is_in_light(t_set *set, t_vect p, t_vect o_col)
 	}
 }
 
-// Exclure la sphere touchee de la liste du second rayon
+t_vect	blend_light(t_set *set, t_vect p, t_vect o_col)
+{
+	t_vect	col;
+	t_vect	amb_l;
+
+	col = is_in_light(set, p, o_col);
+	amb_l = fois_x(set->ambiant.rgb, set->ambiant.light);
+	col = plus(2, col, amb_l);
+	col = divis_x(col, 2);
+	return (col);
+}	

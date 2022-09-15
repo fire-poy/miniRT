@@ -6,7 +6,7 @@
 /*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 15:46:21 by slott             #+#    #+#             */
-/*   Updated: 2022/09/14 14:28:51 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/14 16:11:48 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@ t_sp	get_closest_sp(t_set *set, t_ray r, int ex, float t_max)
 
 	i = 0;
 	empty.r = 0;
-	empty.c = init_vec(0, 0, 0);
-	if (!set->sp_list[0].r)
-		return (empty);
 	max = t_max;
 	id = 0;
 	while (set->sp_list[i].r)

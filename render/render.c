@@ -6,41 +6,42 @@
 /*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:29:20 by slott             #+#    #+#             */
-/*   Updated: 2022/09/14 14:28:50 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/14 16:11:45 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRt.h"
 
+/*
+ 	Pour fond en degrade
+	v1 = init_vec(1, 1, 1);
+	v2 = init_vec(0.5, 0.7, 1);
+ 	u_dir = unit_vector(r.dir);
+	t = 0.5 * (u_dir.y + 1);
+	col = plus(2, fois_x(v1, 1 - t), fois_x(v2, t));
+ */
 t_vect	color(t_set *set, t_ray r)
 {
 	t_vect	col;
-	t_vect	u_dir;
 	t_vect	v1;
-	t_vect	v2;
 	t_sp	sp;
-	float	t;
 	int		i;
 
 	i = 0;
-	v1 = init_vec(1, 1, 1);
-	v2 = init_vec(0.5, 0.7, 1);
 	sp = get_closest_sp(set, r, -1, 1000000000);
-	if (hit_sp(sp, r))
+	if (sp.r != 0)
 	{
 		v1 = point_at(r, hit_sp(sp, r));
-		return (is_in_light(set, v1, sp.rgb));
+		col = blend_light(set, v1, sp.rgb);
+		return (col);
 	}
-	u_dir = unit_vector(r.dir);
-	t = 0.5 * (u_dir.y + 1);
-	col = plus(2, fois_x(v1, 1 - t), fois_x(v2, t));
+	col = fois_x(set->ambiant.rgb, set->ambiant.light);
 	return (col);
 }
 
 void	render(t_mlx *i, t_set *set)
 {
 	t_ray	ray;
-	t_vect	col;
 	float	u;
 	float	v;
 	int		x;
@@ -56,9 +57,8 @@ void	render(t_mlx *i, t_set *set)
 			v = (float)y / (float)900;
 			ray.pos = set->cam.pos;
 			ray.dir = plus(3, set->win.corner, \
-					fois_x(set->win.horizontal, u), fois_x(set->win.vertical, v));
-			col = color(set, ray);
-			my_pxl_put(i, x, y, to_color(col));
+				fois_x(set->win.horizontal, u), fois_x(set->win.vertical, v));
+			my_pxl_put(i, x, y, to_color(color(set, ray)));
 			y++;
 		}
 		x++;

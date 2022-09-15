@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/09/14 14:28:53 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/14 16:11:50 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ void	render(t_mlx *i, t_set *set);
 
 t_sp	get_closest_sp(t_set *set, t_ray r, int ex, float t_max);
 t_vect	is_in_light(t_set *set, t_vect p, t_vect o_col);
+t_vect	blend_light(t_set *set, t_vect p, t_vect o_col);
 
 // Objects
 
