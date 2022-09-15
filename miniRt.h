@@ -132,6 +132,7 @@ void	my_pxl_put(t_mlx *d, int x, int y, int color);
 
 t_vect	color(t_set *set, t_ray r);
 void	render(t_mlx *i, t_set *set);
+
 t_sp	get_closest_sp(t_set *set, t_ray r, int ex, float t_max);
 t_vect	is_in_light(t_set *set, t_vect p, t_vect o_col);
 

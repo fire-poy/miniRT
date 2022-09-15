@@ -41,3 +41,4 @@ int	main(int ac, char **av)
 	mlx_loop(i.mlx_ptr);
 	return (0);
 }
+//free_set

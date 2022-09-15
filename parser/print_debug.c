@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_plane.c                                      :+:      :+:    :+:   */
+/*   print_debug.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/05 15:01:21 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/09 18:53:08 by mpons            ###   ########.fr       */
+/*   Created: 2022/09/09 18:54:01 by mpons             #+#    #+#             */
+/*   Updated: 2022/09/09 18:54:14 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-void	check_plane(char **obj_info, int *q_obj, int l_nb)
+void	print_tab(char **tab)
 {
-	if (ft_tab_len(obj_info) != 4)
-		free_and_error(obj_info, NULL, ERR_TYPE, l_nb);
-	(*q_obj)++;
-	check_coordonees(obj_info, obj_info[1], l_nb);
-	check_vector_orientation(obj_info, obj_info[2], l_nb);
-	check_colors(obj_info, obj_info[3], l_nb);
+	int	i;
+
+	i = -1;
+	while (tab[++i])
+	{
+		printf("%s", tab[i]);
+		printf("\n");
+	}
+	printf("fiiiiiiiiin\n");
+}
+
+void	print_obj(t_q_obj *q_obj)
+{
+	printf("obj c = %d\n", q_obj->c);
+	printf("obj l = %d\n", q_obj->l);
+	printf("obj a = %d\n", q_obj->a);
+	printf("obj sp = %d\n", q_obj->sp);
+	printf("obj pl = %d\n", q_obj->pl);
+	printf("obj cy = %d\n", q_obj->cy);
 }

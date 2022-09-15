@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   operator.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:26:53 by slott             #+#    #+#             */
 /*   Updated: 2022/09/14 14:17:26 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "vector.h"
 
 // Additionne n vecteurs entre eux
-
 t_vect	plus(int n, ...)
 {
 	t_vect	next;
@@ -36,7 +36,6 @@ t_vect	plus(int n, ...)
 }
 
 // Soustrais n vecteur entre eux
-
 t_vect	moins(int n, ...)
 {
 	t_vect	final;
@@ -60,7 +59,6 @@ t_vect	moins(int n, ...)
 }
 
 // Multiplie n vecteurs entre eux
-
 t_vect	fois(int n, ...)
 {
 	t_vect	final;
@@ -84,7 +82,6 @@ t_vect	fois(int n, ...)
 }
 
 // Divise n vecteur entre eux
-
 t_vect	divis(int n, ...)
 {
 	t_vect	final;

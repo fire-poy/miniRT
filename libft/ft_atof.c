@@ -97,20 +97,3 @@ float	ft_atof(char *s)
 	}
 	return ((value * sign) / decimal);
 }
-// 	while (ft_isdigit(s[i]))
-// 	{
-// 		value *= 10;//1ere fois value = 0
-// 		value += s[i] - '0';
-// 		i++;
-// 	}
-// 	if (s[i++] != '.')
-// 		return (sign * value);
-// 	while (ft_isdigit(s[i]))
-// 	{
-// 		value *= 10;//1ere fois value = 0
-// 		value += s[i] - '0';
-// 		decimal *= 10
-// 		i++;
-// 	}
-// 	return ((value * sign) / decimal);
-// }
