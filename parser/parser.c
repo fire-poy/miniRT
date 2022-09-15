@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:50:52 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/09 18:56:37 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/09 20:25:59 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,32 @@ void	calloc_scene_obj(t_set *set, t_q_obj *q_obj)
 {
 	if (q_obj->sp > 0)
 		set->sp_list = ft_calloc(q_obj->sp + 1, sizeof(t_sp));
+		if (set->sp_list == NULL)
+		{
+			free(set->sp_list);
+			print_error_exit("Error\nMalloc des spheres", 0, 1);
+		}
 	if (q_obj->pl > 0)
 		set->plan_list = ft_calloc(q_obj->pl + 1, sizeof(t_plan));
+		if (set->plan_list == NULL)
+		{
+			if (q_obj->sp > 0)
+				free(set->sp_list);
+			free(set->plan_list);
+			print_error_exit("Error\nMalloc des planes", 0, 1);
+		}
 	if (q_obj->cy > 0)
 		set->cyl_list = ft_calloc(q_obj->cy + 1, sizeof(t_cyl));
+		if (set->cyl_list == NULL)
+		{
+			if (q_obj->sp > 0)
+				free(set->sp_list);
+			if (q_obj->pl > 0)
+				free(set->plan_list);
+			free(set->plan_list);
+			free(set->cyl_list);
+			print_error_exit("Error\nMalloc des cylindres", 0, 1);
+		}
 }
 
 // print_obj(&q_obj);
