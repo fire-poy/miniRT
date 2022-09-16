@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:52:36 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/15 19:37:05 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/16 21:43:37 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,51 +49,51 @@
 // 	t_vect	rgb;
 // }					t_plan;
 
-float	hit_plan(t_set *set, t_plan pl, t_ray ray)
-{
-	t_vect		po = pl.pos;
-	t_vect		n = pl.dir;
-	t_vect		lo;//pos camera
-	t_vect		l; //set->cam.dir ->vector unitaire por direc de pixel
-	t_vect		polo;
-	float		denom;
-	float		t;
+// float	hit_plan(t_set *set, t_plan pl, t_ray ray)
+// {
+// 	t_vect		po = pl.pos;
+// 	t_vect		n = pl.dir;
+// 	t_vect		lo;//pos camera
+// 	t_vect		l; //set->cam.dir ->vector unitaire por direc de pixel
+// 	t_vect		polo;
+// 	float		denom;
+// 	float		t;
 
-	lo = set->cam.pos;
-	l = unit_vector(ray.dir);
-	// l = set->cam.dir;
-	denom = dot(n, l);
-	if (denom > 1e-6)
-	//when the denominator is lower than a very small value 
-	//we return false (no intersection was found)
-	{ 
-		polo = moins(2, po,lo);
-        t = dot(polo, n) / denom; 
-		if (t >= 0)
-		{
-			// ft_putendl_fd("patate\n", 1);
-			return (t);
-		}
-		else
-			return (-1);
-    } 
-	return (-1);
-} 
+// 	lo = set->cam.pos;
+// 	l = unit_vector(ray.dir);
+// 	// l = set->cam.dir;
+// 	denom = dot(n, l);
+// 	if (denom > 1e-6)
+// 	//when the denominator is lower than a very small value 
+// 	//we return false (no intersection was found)
+// 	{ 
+// 		polo = moins(2, po,lo);
+//         t = dot(polo, n) / denom; 
+// 		if (t >= 0)
+// 		{
+// 			// ft_putendl_fd("patate\n", 1);
+// 			return (t);
+// 		}
+// 		else
+// 			return (-1);
+//     } 
+// 	return (-1);
+// } 
 
-t_vect	color2(t_set *set, t_ray r)
-{
-	t_vect	col;
-	t_vect	v1;
-	t_sp	sp;
-	float	t;
+// t_vect	color2(t_set *set, t_ray r)
+// {
+// 	t_vect	col;
+// 	t_vect	v1;
+// 	t_sp	sp;
+// 	float	t;
 	
-	t = hit_plan(set, set->plan_list[0], r);
-	if (t != -1)
-	{
-		v1 = point_at(r, t);
-		col = blend_light(set, v1, sp.rgb);
-		return (col);
-	}
-	col = fois_x(set->ambiant.rgb, set->ambiant.light);
-	return (col);
-}
+// 	t = hit_plan(set, set->plan_list[0], r);
+// 	if (t != -1)
+// 	{
+// 		v1 = point_at(r, t);
+// 		col = blend_light(set, v1, sp.rgb);
+// 		return (col);
+// 	}
+// 	col = fois_x(set->ambiant.rgb, set->ambiant.light);
+// 	return (col);
+// }

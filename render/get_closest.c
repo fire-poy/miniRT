@@ -6,62 +6,77 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 15:46:21 by slott             #+#    #+#             */
-/*   Updated: 2022/09/15 19:28:00 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/16 23:11:12 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRt.h"
 
-t_sp	get_closest_sp(t_set *set, t_ray r, int ex, float t_max)
+void	get_closest_sp(t_set *set, t_ray r)
 {
 	int		i;
 	float	t;
-	float	max;
-	int		id;
-	t_sp	empty;
 
 	i = 0;
-	empty.r = 0;
-	max = t_max;
-	id = 0;
-	while (set->sp_list[i].r)
+	while (set->sp_list[i].r != 0)
 	{
 		t = hit_sp(set->sp_list[i], r);
-		if (t < max && t > 0 && ex != i)
+		if (t < set->obj.dist && t > 0)
 		{
-			max = t;
-			id = i;
+			set->obj.dist = t;
+			set->obj.idx = i;
+			set->obj.type = SPHERE;
+			set->obj.col = set->sp_list[i].rgb;
 		}
 		i++;
 	}
-	if (max == t_max)
-		return (empty);
-	set->current_id = id;
-	return (set->sp_list[id]);
 }
-// typedef	struct s_obj
-// {
-// 	int	type;
-// 	int	idx;
-// 	int	dist;
-// 	/* data */
-// }	t_obj;
 
+t_obj	init_obj(void)
+{
+	t_obj	obj;
+	
+	obj.col = init_vec(0, 0, 0);
+	obj.dist = 1e+14;
+	obj.idx = -1;
+	obj.type = -1;
+	return (obj);
+}
 
-// int	get_closest(t_set *set, int *type)
-// {
-// 	int	i;
-// 	int	dist;
-// 	t_obj obj;
+// doit rendre le type d'objet et l'index
+// arbre de if (type == SPHERE) -> draw_sphere
+int	get_closest(t_set *set, t_ray r)
+{
+	int	i;
 
-// 	i = 0;
-// 	dist = 0;
-// 	while (set->sp_list[i])
-// 		get_closest_sp(set, r, -1, 1000000000)//, type); return type
-// 		//j'obtiens la sphere la plus pres
-// 	while (set->plane_list[i]) //je compare avec tous le plan
-// 		get_closest_plane(set, r, 
-// 		// si je trouve un qui soit plus pres je remplace type idx et dist
-// 	while (set->cyl_list[i])
-// 		dist = get_closest_cyl(set, r, -1, 1000000000);
-// }
+	i = 0;
+	set->obj = init_obj();
+	get_closest_sp(set, r);
+	// get_closest_plane(set, r); 
+	// get_closest_cyl(set, r);
+	if (set->obj.type == -1)
+		return (-1);
+	return (0);
+}
+
+t_vect	color_x(t_set *set, t_ray r)
+{
+	t_vect	col;
+	t_vect	v1;
+
+	if (get_closest(set, r) != -1)
+	{
+		if (set->obj.type == SPHERE)
+			v1 = point_at(r, hit_sp(set->sp_list[set->obj.idx], r));
+		// else if (set->obj.type == PLAN)
+		// 	v1 = point_at(r, hit_plane(set->sp_list[set->obj.idx], r));
+		// else if (set->obj.type == CYLINDRE)
+		// 	v1 = point_at(r, hit_cylindre(set->sp_list[set->obj.idx], r));
+		else
+			v1 = init_vec(0, 0, 0);
+		col = blend_light(set, v1, set->obj.col);
+		return (col);
+	}
+	col = fois_x(set->ambiant.rgb, set->ambiant.light);
+	return (col);
+}

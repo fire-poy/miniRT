@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/09/15 19:35:38 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/16 21:52:43 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,14 @@ typedef struct s_window
 	t_vect	v;
 }					t_win;
 
+typedef	struct s_obj
+{
+	int		type;
+	int		idx;
+	float	dist;
+	t_vect	col;
+	}	t_obj;
+
 typedef struct s_set
 {
 	t_sp		*sp_list;
@@ -105,6 +113,14 @@ typedef struct s_set
 	t_camera	cam;
 	t_win		win;
 	int			current_id;
+	t_obj		obj;
+	// void		*shape_list;
+	// union {
+	// 	void		*shape;
+	// 	t_sp		*sp;
+	// 	t_cyl		*cy;
+	// 	t_plan		*pl;
+	// };
 }					t_set;	
 
 typedef struct mlx_instance
@@ -133,7 +149,9 @@ void	my_pxl_put(t_mlx *d, int x, int y, int color);
 t_vect	color(t_set *set, t_ray r);
 void	render(t_mlx *i, t_set *set);
 
-t_sp	get_closest_sp(t_set *set, t_ray r, int ex, float t_max);
+// t_sp	get_closest_sp(t_set *set, t_ray r, int ex, float t_max);
+void	get_closest_sp(t_set *set, t_ray r);
+int		get_closest(t_set *set, t_ray r);
 t_vect	is_in_light(t_set *set, t_vect p, t_vect o_col);
 t_vect	blend_light(t_set *set, t_vect p, t_vect o_col);
 
@@ -144,7 +162,7 @@ void	fov(t_set *set);
 
 // Utils
 t_vect	point_at(t_ray r, float t);
-t_vect	color2(t_set *set, t_ray r);
-
+// t_vect	color2(t_set *set, t_ray r);
+t_vect	color_x(t_set *set, t_ray r);
 
 #endif
