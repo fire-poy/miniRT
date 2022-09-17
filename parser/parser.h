@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:18:48 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/09 19:33:02 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/17 13:07:28 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@
 typedef struct s_set	t_set;
 # endif
 
+# ifndef T_Q_OBJ
+#  define T_Q_OBJ
+
 typedef struct s_q_obj
 {
 	int	a;
@@ -50,6 +53,7 @@ typedef struct s_q_obj
 	int	pl;
 	int	cy;
 }	t_q_obj;
+# endif
 
 // utils
 void	print_tab(char **tab);

@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 10:39:17 by slott             #+#    #+#             */
-/*   Updated: 2022/09/14 16:11:34 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/17 13:04:08 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int ac, char **av)
 	i.addr = mlx_get_data_addr(i.img, &i.bpp, &i.line_length, &i.endian);
 	set.win.horizontal = init_vec(4, 0, 0);
 	set.win.vertical = init_vec(0, 2, 0);
-	parsing(av[1], &set);
+	set.q_obj = parsing(av[1], &set);
 	render(&i, &set);
 	mlx_key_hook(i.win_ptr, key_hook, NULL);
 	mlx_hook(i.win_ptr, 17, 0, exit_hook, NULL);

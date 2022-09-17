@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   vector_ope.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:49:18 by slott             #+#    #+#             */
-/*   Updated: 2022/09/13 15:29:14 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/15 16:52:10 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "vector.h"
+
+#include "miniRt.h"
 
 // Renvoie la "longeur" du vecteur
-
 float	length(t_vect v)
 {
 	float	length;
@@ -23,14 +23,12 @@ float	length(t_vect v)
 
 // Transforme un vecteur en vecteur unitaire
 // Unitaire = avec des valeurs comprises entre 0 et 1
-
 t_vect	unit_vector(t_vect v)
 {
 	return (divis_x(v, length(v)));
 }
 
 // Produit scalaire de 2 vecteurs
-
 float	dot(t_vect v1, t_vect v2)
 {
 	float	res;

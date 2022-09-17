@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slott <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 13:28:54 by slott             #+#    #+#             */
-/*   Updated: 2022/09/14 16:02:53 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/17 13:15:28 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@ t_vect	is_in_light(t_set *set, t_vect p, t_vect o_col)
 {
 	t_ray	r;
 	t_vect	col;
-	t_sp	sp;
 
 	r.pos = p;
 	r.dir = moins (2, set->light.pos, p);
-	sp = get_closest_sp(set, r, set->current_id, 1);
-	if (sp.r != 0)
+	if (get_closest(set, r, 1) != -1)
 	{
 		col = divis_x(o_col, 2);
 		return (col);
