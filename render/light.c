@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 13:28:54 by slott             #+#    #+#             */
-/*   Updated: 2022/09/17 14:12:08 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/17 14:21:57 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_vect	is_in_light(t_set *set, t_vect p, t_vect o_col)
 
 	r.pos = p;
 	r.dir = moins (2, set->light.pos, p);
+	r.pos = point_at(r, 0.0001);
 	if (get_closest(set, r, 1) != -1)
 	{
 		col = divis_x(o_col, 2);

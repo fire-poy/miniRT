@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:59:21 by slott             #+#    #+#             */
-/*   Updated: 2022/09/15 19:43:27 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/17 14:21:59 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ float	hit_sp(t_sp sp, t_ray ray)
 	else
 	{
 		eq.t = (-eq.b - sqrt(eq.delta)) / (2 * eq.a);
+		if (eq.t <= 0)
+			eq.t = (-eq.b + sqrt(eq.delta)) / (2 * eq.a);
 		return (eq.t);
 	}
 }
