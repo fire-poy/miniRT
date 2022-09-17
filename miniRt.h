@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/09/17 14:12:10 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/17 14:18:12 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,13 @@ typedef struct s_window
 	t_vect	v;
 }					t_win;
 
-typedef	struct s_obj
+typedef struct s_obj
 {
 	int		type;
 	int		idx;
 	float	dist;
 	t_vect	col;
-	}	t_obj;
+}					t_obj;
 
 # ifndef T_Q_OBJ
 #  define T_Q_OBJ

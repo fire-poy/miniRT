@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 15:46:21 by slott             #+#    #+#             */
-/*   Updated: 2022/09/17 14:12:02 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/17 14:18:01 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	get_closest_sp(t_set *set, t_ray r)
 		}
 	}
 }
+
 t_obj	init_obj(float t_max)
 {
 	t_obj	obj;
