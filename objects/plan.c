@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:52:36 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/17 13:15:48 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/17 15:14:05 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,3 +82,28 @@ float	hit_plan(t_set *set, t_plan pl, t_ray r)
     } 
 	return (-1);
 } 
+
+void	get_closest_pl(t_set *set, t_ray r)
+{
+	int		i;
+	float	t;
+
+	i = 0;
+	if (set->q_obj.pl > 0)
+	{
+		while (set->plan_list[i].empty == 0)
+		{
+			t = hit_plan(set, set->plan_list[i], r);
+			// printf("t = %f\n",t);
+			if (t < set->obj.dist && t >= 0)
+			{
+				// ft_putendl_fd("PATATE", 1);
+				set->obj.dist = t;
+				set->obj.idx = i;
+				set->obj.type = PLAN;
+				set->obj.col = set->plan_list[i].rgb;
+			}
+			i++;
+		}
+	}
+}

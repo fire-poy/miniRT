@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 13:28:54 by slott             #+#    #+#             */
-/*   Updated: 2022/09/17 13:15:28 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/17 14:47:37 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ t_vect	is_in_light(t_set *set, t_vect p, t_vect o_col)
 
 	r.pos = p;
 	r.dir = moins (2, set->light.pos, p);
+	r.pos = point_at(r, 0.0001);
 	if (get_closest(set, r, 1) != -1)
 	{
-		col = divis_x(o_col, 2);
+		col = divis_x(o_col, 2);//divise par deux plus obscure
 		return (col);
 	}
 	else
@@ -31,7 +32,7 @@ t_vect	is_in_light(t_set *set, t_vect p, t_vect o_col)
 	}
 }
 
-t_vect	blend_light(t_set *set, t_vect p, t_vect o_col)
+t_vect	blend_light(t_set *set, t_vect p, t_vect o_col)//obj_col
 {
 	t_vect	col;
 	t_vect	amb_l;
