@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/09/16 21:52:43 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/17 13:16:48 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_plan
 	t_vect	pos;
 	t_vect	dir;
 	t_vect	rgb;
+	int		empty;
 }					t_plan;
 
 typedef struct s_ambiant
@@ -70,6 +71,7 @@ typedef struct s_cyl
 	t_vect	rgb;
 	float	r;
 	float	len;
+	int		empty;
 }					t_cyl;
 
 typedef struct s_ray
@@ -84,6 +86,7 @@ typedef struct s_sphere
 	t_vect	c;
 	float	r;
 	t_vect	rgb;
+	int		empty;
 }					t_sp;
 
 typedef struct s_window
@@ -103,6 +106,20 @@ typedef	struct s_obj
 	t_vect	col;
 	}	t_obj;
 
+# ifndef T_Q_OBJ
+#  define T_Q_OBJ
+
+typedef struct s_q_obj
+{
+	int	a;
+	int	c;
+	int	l;
+	int	sp;
+	int	pl;
+	int	cy;
+}	t_q_obj;
+# endif
+
 typedef struct s_set
 {
 	t_sp		*sp_list;
@@ -114,13 +131,7 @@ typedef struct s_set
 	t_win		win;
 	int			current_id;
 	t_obj		obj;
-	// void		*shape_list;
-	// union {
-	// 	void		*shape;
-	// 	t_sp		*sp;
-	// 	t_cyl		*cy;
-	// 	t_plan		*pl;
-	// };
+	t_q_obj		q_obj;
 }					t_set;	
 
 typedef struct mlx_instance
@@ -136,7 +147,8 @@ typedef struct mlx_instance
 
 //Parsing
 
-void	parsing(char *scene_file, t_set *set);
+// void	parsing(char *scene_file, t_set *set);
+t_q_obj	parsing(char *scene_file, t_set *set);
 
 //Mlx
 
@@ -145,24 +157,22 @@ int		exit_hook(void);
 void	my_pxl_put(t_mlx *d, int x, int y, int color);
 
 // Render
-
 t_vect	color(t_set *set, t_ray r);
 void	render(t_mlx *i, t_set *set);
 
 // t_sp	get_closest_sp(t_set *set, t_ray r, int ex, float t_max);
 void	get_closest_sp(t_set *set, t_ray r);
-int		get_closest(t_set *set, t_ray r);
+int		get_closest(t_set *set, t_ray r, float t_max);
 t_vect	is_in_light(t_set *set, t_vect p, t_vect o_col);
 t_vect	blend_light(t_set *set, t_vect p, t_vect o_col);
 
 // Objects
 
 float	hit_sp(t_sp sp, t_ray ray);
+float	hit_plan(t_set *set, t_plan pl, t_ray r);
 void	fov(t_set *set);
 
 // Utils
 t_vect	point_at(t_ray r, float t);
-// t_vect	color2(t_set *set, t_ray r);
-t_vect	color_x(t_set *set, t_ray r);
 
 #endif

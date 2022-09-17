@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:29:20 by slott             #+#    #+#             */
-/*   Updated: 2022/09/16 23:13:50 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/17 13:15:59 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	render(t_mlx *i, t_set *set)
 				fois_x(set->win.horizontal, u), fois_x(set->win.vertical, v));
 			// print_vec(ray.pos);
 			// print_vec(ray.dir);
-			my_pxl_put(i, x, y, to_color(color_x(set, ray)));
+			my_pxl_put(i, x, y, to_color(color(set, ray)));
 			y++;
 		}
 		x++;
