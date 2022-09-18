@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/09/17 14:22:01 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/18 17:11:48 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ typedef struct s_set
 	t_win		win;
 	int			current_id;
 	t_obj		obj;
+	t_vect		normal;
 	t_q_obj		q_obj;
 }					t_set;	
 
@@ -159,12 +160,14 @@ void	my_pxl_put(t_mlx *d, int x, int y, int color);
 // Render
 t_vect	color(t_set *set, t_ray r);
 void	render(t_mlx *i, t_set *set);
+t_vect	phong(t_set *set, t_vect p, t_vect o_col);
+int		is_in_light(t_set *set, t_vect p);
+t_vect	blend_light(t_set *set, t_vect p);
+t_vect	reflect(t_vect l_dir, t_vect norm);
 
 // t_sp	get_closest_sp(t_set *set, t_ray r, int ex, float t_max);
 void	get_closest_sp(t_set *set, t_ray r);
 int		get_closest(t_set *set, t_ray r, float t_max);
-t_vect	is_in_light(t_set *set, t_vect p, t_vect o_col);
-t_vect	blend_light(t_set *set, t_vect p, t_vect o_col);
 
 // Objects
 
@@ -173,5 +176,8 @@ void	fov(t_set *set);
 
 // Utils
 t_vect	point_at(t_ray r, float t);
+t_vect	col_scaled(t_vect col);
+t_vect	ranged(t_vect v);
+float	clamp(float x, float min, float max);
 
 #endif

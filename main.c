@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 10:39:17 by slott             #+#    #+#             */
-/*   Updated: 2022/09/17 14:21:44 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/18 17:11:37 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(int ac, char **av)
 	set.win.horizontal = init_vec(4, 0, 0);
 	set.win.vertical = init_vec(0, 2, 0);
 	set.q_obj = parsing(av[1], &set);
+	set.light.rgb = init_vec(255, 255, 255);
 	render(&i, &set);
 	mlx_key_hook(i.win_ptr, key_hook, NULL);
 	mlx_hook(i.win_ptr, 17, 0, exit_hook, NULL);
