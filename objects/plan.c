@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:52:36 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/20 11:08:03 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/20 15:08:26 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,16 @@ float	hit_plan(t_plan pl, t_ray r)
 	t_vect		po = pl.pos;
 	t_vect		n = pl.dir;
 	t_vect		lo = r.pos;;//point depart
-	t_vect		l = r.dir;; //set->cam.dir ->vector unitaire por direc de pixel
+	t_vect		l = r.dir; //set->cam.dir ->vector unitaire por direc de pixel
 	t_vect		polo;
 	float		denom;
 	float		t;
-	// static int a = 200
 
 	denom = dot(l, n);
-	if (denom < 0)
-	{
-	// 	// print_vec(n);
-        n = invert_vector(n);
-	// 	// print_vec(n);
-		denom = dot(l, n);
-	}
-	// 	ft_putendl_fd("normal inversé", 1);
-	// 	printf("denom = %f\n", denom);		
+	// if (denom < 0)
+	// {
+    //     n = invert_vector(n);
+	// 	denom = dot(l, n);
 	// }
 	if (denom > 1e-6)
 	{ 
@@ -80,14 +74,12 @@ float	hit_plan(t_plan pl, t_ray r)
 		if (t >= 0)
 			return (t);
     } 
-	// if (dot(n, rd.d) > 0)
-    //     invert_vector(&ret->n);
 	return (-1);
 } 
 //when the denominator is lower than a very small value 
 //we return false (no intersection was found)
 
-void	get_closest_pl(t_set *set, t_ray r)
+void	get_closest_pl(t_set *set, t_ray r)//, int flag)
 {
 	int		i;
 	float	t;
@@ -107,6 +99,14 @@ void	get_closest_pl(t_set *set, t_ray r)
 				set->obj.idx = i;
 				set->obj.type = PLAN;
 				set->obj.col = set->plan_list[i].rgb;
+				if (dot(set->plan_list[i].dir, r.dir) > 0)
+				{
+					// print_vec(set->plan_list[i].dir);
+			    	set->normal = invert_vector(set->plan_list[i].dir);
+					print_vec(set->normal);
+				}
+				else
+					set->normal = set->plan_list[i].dir;
 			}
 			i++;
 		}
