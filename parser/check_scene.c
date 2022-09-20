@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 10:36:16 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/17 16:03:24 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/20 11:31:32 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void	check_scene(char *scene_file, t_q_obj *q_obj)
 	int		fd;
 
 	fd = open(scene_file, O_RDONLY);
-	// if (fd == -1)
-	// 	print_error_exit("Error\nPendant l'ouverture de fichier", 0, 1);
 	l_nb = 0;
 	line = get_next_line(fd);
 	while (line)
