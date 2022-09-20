@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:52:36 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/17 15:14:05 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/20 11:08:03 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,48 +40,52 @@
 //     return (0);
 // } 
 
-// Calcule si un rayon "ray" traverse ou non la sphere "sp"
-// Renvoie la ou les valeurs 't' pour lesquels le rayon touche la sphere
-// typedef struct s_plan
-// {
+t_vect    invert_vector(t_vect v)
+{
+	v.x = v.x * -1;
+	v.y = v.y * -1;
+	v.z = v.z * -1;
+	return (v);
+}
 // 	t_vect	pos;
 // 	t_vect	dir;
 // 	t_vect	rgb;
-// }					t_plan;
-
-float	hit_plan(t_set *set, t_plan pl, t_ray r)
+// l = unit_vector(r.dir);
+float	hit_plan(t_plan pl, t_ray r)
 {
 	t_vect		po = pl.pos;
 	t_vect		n = pl.dir;
-	t_vect		lo;//pos camera
-	t_vect		l; //set->cam.dir ->vector unitaire por direc de pixel
+	t_vect		lo = r.pos;;//point depart
+	t_vect		l = r.dir;; //set->cam.dir ->vector unitaire por direc de pixel
 	t_vect		polo;
 	float		denom;
 	float		t;
+	// static int a = 200
 
-	// lo = set->cam.pos;// il faudrait avoir point du depart du rayon
-	set->obj.idx++;
-	set->obj.idx--;
-	lo = r.pos;
-	l = unit_vector(r.dir);
-	// l = set->cam.dir;
-	denom = dot(n, l);
+	denom = dot(l, n);
+	if (denom < 0)
+	{
+	// 	// print_vec(n);
+        n = invert_vector(n);
+	// 	// print_vec(n);
+		denom = dot(l, n);
+	}
+	// 	ft_putendl_fd("normal inversé", 1);
+	// 	printf("denom = %f\n", denom);		
+	// }
 	if (denom > 1e-6)
-	//when the denominator is lower than a very small value 
-	//we return false (no intersection was found)
 	{ 
 		polo = moins(2, po,lo);
         t = dot(polo, n) / denom; 
 		if (t >= 0)
-		{
-			// ft_putendl_fd("patate\n", 1);
 			return (t);
-		}
-		else
-			return (-1);
     } 
+	// if (dot(n, rd.d) > 0)
+    //     invert_vector(&ret->n);
 	return (-1);
 } 
+//when the denominator is lower than a very small value 
+//we return false (no intersection was found)
 
 void	get_closest_pl(t_set *set, t_ray r)
 {
@@ -93,11 +97,12 @@ void	get_closest_pl(t_set *set, t_ray r)
 	{
 		while (set->plan_list[i].empty == 0)
 		{
-			t = hit_plan(set, set->plan_list[i], r);
-			// printf("t = %f\n",t);
+			t = hit_plan(set->plan_list[i], r);
+			// if (t > 0)
+			// 	printf("t = %f\n",t);
 			if (t < set->obj.dist && t >= 0)
+			// if (t < set->obj.dist && t >= 0)
 			{
-				// ft_putendl_fd("PATATE", 1);
 				set->obj.dist = t;
 				set->obj.idx = i;
 				set->obj.type = PLAN;

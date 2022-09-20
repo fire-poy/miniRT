@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 17:51:03 by slott             #+#    #+#             */
-/*   Updated: 2022/09/15 17:19:16 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/17 16:57:40 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	fov(t_set *set)
 	float	angle;
 
 	vup = init_vec(0, 1, 0);
+	// vup = set->cam.dir;
 	angle = (set->cam.fov * (M_PI / 180)) / 2;
 	dist = 2 / tan(angle);
 	/*set->win.u = unit_vector(cross(vup, set->cam.dir));

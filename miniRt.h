@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/09/17 14:56:01 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/17 15:49:57 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,8 @@ t_vect	blend_light(t_set *set, t_vect p, t_vect o_col);
 // Objects
 
 float	hit_sp(t_sp sp, t_ray ray);
-float	hit_plan(t_set *set, t_plan pl, t_ray r);
+float	hit_plan(t_plan pl, t_ray r);
+// float	hit_plan(t_set *set, t_plan pl, t_ray r);
 void	fov(t_set *set);
 
 // Utils

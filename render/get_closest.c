@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 15:46:21 by slott             #+#    #+#             */
-/*   Updated: 2022/09/17 15:14:13 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/17 17:08:21 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ t_vect	color(t_set *set, t_ray r)
 		col = blend_light(set, v1, set->obj.col);
 		return (col);
 	}
+	// col = init_vec(0,0,0);
 	col = fois_x(set->ambiant.rgb, set->ambiant.light);
 	return (col);
 }
