@@ -20,6 +20,7 @@ void	fov(t_set *set)
 	float	angle;
 
 	vup = init_vec(0, 1, 0);
+	// vup = set->cam.dir;
 	angle = (set->cam.fov * (M_PI / 180)) / 2;
 	half_width = tan(angle);
 	half_height = half_width / 2;

@@ -184,11 +184,13 @@ t_vect	reflect(t_vect l_dir, t_vect norm);
 
 // t_sp	get_closest_sp(t_set *set, t_ray r, int ex, float t_max);
 void	get_closest_sp(t_set *set, t_ray r);
+void	get_closest_pl(t_set *set, t_ray r);
 int		get_closest(t_set *set, t_ray r, float t_max);
 
 // Objects
 
 float	hit_sp(t_sp sp, t_ray ray);
+float	hit_plan(t_plan pl, t_ray r);
 void	fov(t_set *set);
 
 // Utils
@@ -196,5 +198,7 @@ t_vect	point_at(t_ray r, float t);
 t_vect	col_scaled(t_vect col);
 t_vect	ranged(t_vect v);
 float	clamp(float x, float min, float max);
+t_vect    invert_vector(t_vect v);
+
 
 #endif

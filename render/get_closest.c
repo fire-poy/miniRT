@@ -37,6 +37,38 @@ void	get_closest_sp(t_set *set, t_ray r)
 	}
 }
 
+void	get_closest_pl(t_set *set, t_ray r)//, int flag)
+{
+	int		i;
+	float	t;
+
+	i = 0;
+	// while (i < q_obj.pl)
+	if (set->q_obj.pl > 0)
+	{
+		while (set->plan_list[i].empty == 0)
+		{
+			t = hit_plan(set->plan_list[i], r);
+			if (t < set->obj.dist && t >= 0)
+			{
+				set->obj.dist = t;
+				set->obj.idx = i;
+				set->obj.type = PLAN;
+				set->obj.col = set->plan_list[i].rgb;
+				if (dot(set->plan_list[i].dir, r.dir) < 0)
+				{
+					// print_vec(set->plan_list[i].dir);
+			    	set->normal = invert_vector(set->plan_list[i].dir);
+					// print_vec(set->normal);
+				}
+				else
+					set->normal = set->plan_list[i].dir;
+			}
+			i++;
+		}
+	}
+}
+
 t_obj	init_obj(float t_max)
 {
 	t_obj	obj;
@@ -48,8 +80,6 @@ t_obj	init_obj(float t_max)
 	return (obj);
 }
 
-// doit rendre le type d'objet et l'index
-// arbre de if (type == SPHERE) -> draw_sphere
 int	get_closest(t_set *set, t_ray r, float t_max)
 {
 	int	i;
@@ -57,6 +87,10 @@ int	get_closest(t_set *set, t_ray r, float t_max)
 	i = 0;
 	set->obj = init_obj(t_max);
 	get_closest_sp(set, r);
+	get_closest_pl(set, r); 
+	// get_closest_cyl(set, r);
+	// if (set->obj.type == PLAN)
+	// 	ft_putendl_fd("je suis un plan", 1);
 	if (set->obj.type == -1)
 		return (-1);
 	return (0);
