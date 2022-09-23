@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:29:20 by slott             #+#    #+#             */
-/*   Updated: 2022/09/23 17:16:55 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/23 18:30:32 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ t_vect	color(t_set *set, t_ray r)
 
 void	render(t_mlx *i, t_set *set)
 {
-	t_ray	ray;
-	float	u;
-	float	v;
+	t_vect	col;
 	int		x;
 	int		y;
 
@@ -41,16 +39,36 @@ void	render(t_mlx *i, t_set *set)
 		y = 0;
 		while (y < 900)
 		{
-			u = (float)x / (float)1800;
-			v = (float)y / (float)900;
-			ray.pos = set->cam.pos;
-			ray.dir = plus(3, set->win.corner, \
-				fois_x(set->win.horizontal, u), fois_x(set->win.vertical, v));
-			ray.dir = moins(2, ray.dir, set->cam.pos);
-			my_pxl_put(i, x, y, to_color(color(set, ray)));
+			col = render_core(set, x, y);
+			my_pxl_put(i, x, y, to_color(col));
 			y++;
 		}
 		x++;
 	}
 	mlx_put_image_to_window(i->mlx_ptr, i->win_ptr, i->img, 0, 0);
+}
+
+t_vect	render_core(t_set *set, int x, int y)
+{
+	t_ray	r;
+	t_vect	col;
+	float	u;
+	float	v;
+	float	s;
+
+	s = 0.0;
+	col = init_vec(0, 0, 0);
+	while (s <= 0.9)
+	{
+		u = (float)(x + s) / (float)1800;
+		v = (float)(y + s) / (float)900;
+		r.pos = set->cam.pos;
+		r.dir = plus(3, set->win.corner, \
+			fois_x(set->win.horizontal, u), fois_x(set->win.vertical, v));
+		r.dir = moins(2, r.dir, set->cam.pos);
+		col = plus(2, col, color(set, r));
+		s += 0.1;
+	}
+	col = ranged(divis_x(col, 10));
+	return (col);
 }
