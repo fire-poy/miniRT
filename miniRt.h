@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/09/23 17:25:51 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/23 21:02:47 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ typedef struct s_cyl
 	float	r;
 	float	len;
 	int		empty;
+	t_vect	rao;
+	t_vect	va;
 }					t_cyl;
 
 typedef struct s_ray
@@ -149,6 +151,8 @@ typedef struct s_set
 	t_obj		obj;
 	t_vect		normal;
 	t_q_obj		q_obj;
+	t_vect		va;
+	t_vect		rao;
 }					t_set;	
 
 typedef struct mlx_instance
@@ -184,12 +188,14 @@ t_vect	reflect(t_vect l_dir, t_vect norm);
 // t_sp	get_closest_sp(t_set *set, t_ray r, int ex, float t_max);
 void	get_closest_sp(t_set *set, t_ray r);
 void	get_closest_pl(t_set *set, t_ray r);
+void	get_closest_cyl(t_set *set, t_ray r);
 int		get_closest(t_set *set, t_ray r, float t_max);
 
 // Objects
 
 float	hit_sp(t_sp sp, t_ray ray);
 float	hit_plan(t_plan pl, t_ray r);
+float	hit_cyl(t_set *set, t_cyl cyl, t_ray ray);
 void	fov(t_set *set);
 
 // Utils
