@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 10:36:16 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/17 14:16:01 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/23 16:04:32 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_it_empty_line(char **line, int fd)
 {
-	if (*line[0] == '\n')
+	if (*line[0] == '\n' || *line[0] == '#')
 	{
 		free(*line);
 		*line = get_next_line(fd);

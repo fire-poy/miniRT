@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/09/18 17:11:48 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/23 17:16:59 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,22 @@ typedef struct s_obj
 	float	dist;
 	t_vect	col;
 }					t_obj;
+
+typedef struct s_phong
+{
+	t_vect	ambiant;
+	t_vect	diffuse;
+	t_vect	specular;
+	t_vect	col;
+	t_vect	i_s;
+	t_vect	l;
+	t_vect	r;
+	t_vect	v;
+	float	k_s;
+	float	dotln;
+	float	dotrv;
+	float	alpha;
+}					t_phong;
 
 # ifndef T_Q_OBJ
 #  define T_Q_OBJ
