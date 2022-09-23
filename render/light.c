@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 13:28:54 by slott             #+#    #+#             */
-/*   Updated: 2022/09/20 11:30:09 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/23 16:59:32 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ t_vect	phong(t_set *set, t_vect p, t_vect o_col)
 	i_s = init_vec(1, 1, 1);
 	alpha = 10.0;
 	specular = fois_x(i_s, k_s * pow(dotRV, alpha));
+	// col = ranged(plus(2, ambiant, diffuse));
 	col = ranged(plus(3, ambiant, diffuse, specular));
 	return (col);
 }

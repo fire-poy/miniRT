@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/09/20 11:30:50 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/20 15:28:50 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,5 +181,7 @@ t_vect	point_at(t_ray r, float t);
 t_vect	col_scaled(t_vect col);
 t_vect	ranged(t_vect v);
 float	clamp(float x, float min, float max);
+t_vect    invert_vector(t_vect v);
+
 
 #endif

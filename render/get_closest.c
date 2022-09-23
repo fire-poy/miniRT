@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 15:46:21 by slott             #+#    #+#             */
-/*   Updated: 2022/09/20 11:32:22 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/23 17:02:51 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,38 @@ void	get_closest_sp(t_set *set, t_ray r)
 				set->obj.type = SPHERE;
 				set->obj.col = set->sp_list[i].rgb;
 				set->normal = unit_vector(moins(2, point_at(r, t), set->sp_list[i].c));
+			}
+			i++;
+		}
+	}
+}
+
+void	get_closest_pl(t_set *set, t_ray r)//, int flag)
+{
+	int		i;
+	float	t;
+
+	i = 0;
+	// while (i < q_obj.pl)
+	if (set->q_obj.pl > 0)
+	{
+		while (set->plan_list[i].empty == 0)
+		{
+			t = hit_plan(set->plan_list[i], r);
+			if (t < set->obj.dist && t >= 0)
+			{
+				set->obj.dist = t;
+				set->obj.idx = i;
+				set->obj.type = PLAN;
+				set->obj.col = set->plan_list[i].rgb;
+				if (dot(set->plan_list[i].dir, r.dir) < 0)
+				{
+					// print_vec(set->plan_list[i].dir);
+			    	set->normal = invert_vector(set->plan_list[i].dir);
+					// print_vec(set->normal);
+				}
+				else
+					set->normal = set->plan_list[i].dir;
 			}
 			i++;
 		}

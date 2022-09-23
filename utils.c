@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:03:01 by slott             #+#    #+#             */
-/*   Updated: 2022/09/18 17:11:35 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/23 16:58:58 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ t_vect	ranged(t_vect v)
 {
 	if (v.x > 1 || v.y > 1 || v.z > 1)
 	{
-		if (v.x > v.y && v.x > v.z)
+		if (v.x >= v.y && v.x >= v.z)
 			v = divis_x(v, v.x);
-		else if (v.y > v.x && v.y > v.z)
+		else if (v.y >= v.x && v.y >= v.z)
 			v = divis_x(v, v.y);
-		else if (v.z > v.x && v.z > v.y)
+		else if (v.z >= v.x && v.z >= v.y)
 			v = divis_x(v, v.z);
 	}
 	return (v);
