@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:29:20 by slott             #+#    #+#             */
-/*   Updated: 2022/09/17 14:21:55 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/18 17:11:31 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ t_vect	color(t_set *set, t_ray r)
 	if (get_closest(set, r, 1e+42) != -1)
 	{
 		v1 = point_at(r, set->obj.dist);
-		col = blend_light(set, v1, set->obj.col);
+		col = blend_light(set, v1);
 		return (col);
 	}
-	col = fois_x(set->ambiant.rgb, set->ambiant.light);
+	col = init_vec(0, 0, 0);
 	return (col);
 }
 
