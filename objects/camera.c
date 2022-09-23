@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 17:51:03 by slott             #+#    #+#             */
-/*   Updated: 2022/09/23 17:26:37 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/23 18:30:28 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	fov(t_set *set)
 	half_height = half_width / 2;
 	set->win.u = unit_vector(cross(vup, set->cam.dir));
 	set->win.v = cross(set->cam.dir, set->win.u);
-	set->win.corner = init_vec(-half_width, -half_height, -1.0);
 	set->win.corner = moins(4, set->cam.pos, fois_x(set->win.u, \
 				half_width), fois_x(set->win.v, half_height), set->cam.dir);
 	set->win.horizontal = fois_x(set->win.u, 2.0 * half_width);
