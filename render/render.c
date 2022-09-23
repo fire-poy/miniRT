@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:29:20 by slott             #+#    #+#             */
-/*   Updated: 2022/09/18 17:11:31 by slott            ###   ########.fr       */
+/*   Updated: 2022/09/23 17:16:55 by slott            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	render(t_mlx *i, t_set *set)
 			ray.pos = set->cam.pos;
 			ray.dir = plus(3, set->win.corner, \
 				fois_x(set->win.horizontal, u), fois_x(set->win.vertical, v));
+			ray.dir = moins(2, ray.dir, set->cam.pos);
 			my_pxl_put(i, x, y, to_color(color(set, ray)));
 			y++;
 		}
