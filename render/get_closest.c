@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 15:46:21 by slott             #+#    #+#             */
-/*   Updated: 2022/09/23 17:02:51 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/23 17:26:24 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	get_closest_sp(t_set *set, t_ray r)
 				set->obj.idx = i;
 				set->obj.type = SPHERE;
 				set->obj.col = set->sp_list[i].rgb;
-				set->normal = unit_vector(moins(2, point_at(r, t), set->sp_list[i].c));
+				set->normal = unit_vector(moins(2, point_at(r, t), \
+							set->sp_list[i].c));
 			}
 			i++;
 		}
