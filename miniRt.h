@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/09/23 21:02:47 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/26 20:25:03 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,15 @@ typedef struct s_light
 typedef struct s_cyl
 {
 	t_vect	pos;
-	t_vect	dir;
+	t_vect	dir;//disque dir == cyl dir
 	t_vect	rgb;
 	float	r;
 	float	len;
 	int		empty;
 	t_vect	rao;
 	t_vect	va;
+	t_vect	top_center;//disque pos
+	t_vect	bot_center;//disque pos
 }					t_cyl;
 
 typedef struct s_ray
@@ -195,7 +197,8 @@ int		get_closest(t_set *set, t_ray r, float t_max);
 
 float	hit_sp(t_sp sp, t_ray ray);
 float	hit_plan(t_plan pl, t_ray r);
-float	hit_cyl(t_set *set, t_cyl cyl, t_ray ray);
+int		hit_cyl(t_set *set, t_cyl cyl, t_ray ray);
+int		check_cyl(t_set *set, t_cyl cyl, t_ray ray);
 void	fov(t_set *set);
 
 // Utils
