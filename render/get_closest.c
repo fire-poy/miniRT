@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 15:46:21 by slott             #+#    #+#             */
-/*   Updated: 2022/09/26 20:25:14 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/26 20:34:11 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	get_closest_sp(t_set *set, t_ray r)
 void	get_closest_cyl(t_set *set, t_ray r)
 {
 	int		i;
-	// float	t;
 
 	i = 0;
 	if (set->q_obj.cy > 0)
@@ -53,18 +52,6 @@ void	get_closest_cyl(t_set *set, t_ray r)
 				set->obj.type = CYLINDRE;
 				set->obj.col = set->cyl_list[i].rgb;
 			}
-			// t = check_cyl(set, set->cyl_list[i], r);
-			// if (t < set->obj.dist && t > 0)
-			// {
-			// 	set->obj.dist = t;
-			// 	set->obj.idx = i;
-			// 	set->obj.type = CYLINDRE;
-			// 	set->obj.col = set->cyl_list[i].rgb;
-			// 	aux = moins(2, set->cyl_list[i].pos, point_at(r, t));
-			// 	set->normal = cross(aux, set->cyl_list[i].dir);
-			// 	set->normal = cross(set->normal, set->cyl_list[i].dir);
-			// 	set->normal = unit_vector(set->normal);
-			// }
 			i++;
 		}
 	}

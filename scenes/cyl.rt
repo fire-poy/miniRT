@@ -15,7 +15,13 @@ sp	3.5,-6,-10		0.5  		     	255,0,255
 # ROUGE
 sp	2,0,-10		1.5  		     	255,33,0
 
+sp	-9,-6,-10		0.5  		     	255,0,255
+sp	10,13,-1		0.5  		     	255,0,255
+
 #	Cylinder
 #	point			normal		diameter	height		color
+sp	0,3,-10			0.5  		     	255,0,255
 cy	0,3,-10			1,1,0		5	 		20 			10,0,255
-# cy	0,3,-10			0,1,0		2	 		20 			10,0,255
+# cy	0,3,-10			0,1,0		4	 		10 			10,0,255
+# on obtien normal * (height/2)
+# plus point et aux
