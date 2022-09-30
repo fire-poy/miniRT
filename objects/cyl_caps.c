@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 22:16:08 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/27 19:31:08 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/30 20:47:09 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	inside_cyl_cap(t_set *set, t_cyl cyl, t_vect pl_center, t_ray r, float t)
 	hit_point = point_at(r, t);
 	vec = moins(2, hit_point, pl_center);
 	d_to_center = length(vec);
-	if (d_to_center <= cyl.r) //&& t < set->obj.dist && t > 0)//de acuerdo con el if de check-cap
+	if (d_to_center <= cyl.r - 0.5) //&& t < set->obj.dist && t > 0)//de acuerdo con el if de check-cap
 	{			
 		// printf("d_to_center %f\n", d_to_center);
 		// printf("cyl.r %f\n", cyl.r);
@@ -48,114 +48,54 @@ int	inside_cyl_cap(t_set *set, t_cyl cyl, t_vect pl_center, t_ray r, float t)
 	return (0);
 }
 
-int	check_cap(t_set *set, t_cyl cyl, t_vect pl_pos, t_ray r)
+int	check_cap(t_set *set, t_cyl cyl, t_vect cap_pos, t_ray r)
 {
-	t_vect		n;
 	t_vect		polo;
 	float		denom;
 	float		t;
 
-	n = cyl.dir;
-	denom = dot(r.dir, n);
-	if (denom < 0)
-	{
-        n = invert_vector(n);
-		denom = dot(r.dir, n);
-	}
-	if (denom > 1e-6)
+	denom = dot(r.dir, cyl.dir);
+	if (denom != 0)
 	{ 
-		polo = moins(2, pl_pos,r.pos);
-        t = dot(polo, n) / denom; 
-		if (t < set->obj.dist && t >= 0)//t>= 0?
+		polo = moins(2, cap_pos, r.pos);
+        t = dot(polo, cyl.dir) / denom; 
+		if (t < set->obj.dist && t > 0)
 		{
-			if (inside_cyl_cap(set, cyl, pl_pos, r, t))
+			if (inside_cyl_cap(set, cyl, cap_pos, r, t))
 				return (1);
-				// return (t);
 		}
     } 
 	return (0);
-	// return (-1);
 }
 
-// int	verif_inside_cylindre_body2(t_ray d, const t_obj c, t_ret_ray *ret)
-int	inside_limits(t_set *set, t_cyl cyl, t_ray r, float t)
-{
-	float		hit_point_to_cyl_center;
-	float		high_of_hit_point;
-	t_vect		hit_point;
-	t_vect		aux;
-	t_vect		vec;
+// int	check_cap(t_set *set, t_cyl cyl, t_vect pl_pos, t_ray r)
+// {
+// 	t_vect		n;
+// 	t_vect		polo;
+// 	float		denom;
+// 	float		t;
 
-	hit_point = point_at(r, t);
-	vec = moins(2, hit_point, cyl.pos);
-	hit_point_to_cyl_center = length(vec);
-	// hit_point_to_cyl_center = (point_at(r,t), cyl.pos);
-	// high_of_hit_point = pow(hit_point_to_cyl_center, 2) - (cyl.r * cyl.r);
-	high_of_hit_point = (hit_point_to_cyl_center * hit_point_to_cyl_center) - (cyl.r * cyl.r);
-	// pow(cyl.r, 2);
-	// pow((cyl.len / 2), 2))
-	if (high_of_hit_point <= ((cyl.len/2) * (cyl.len/2)))
-	{
-		set->obj.dist = t;
-		aux = moins(2, cyl.pos, point_at(r, t));
-		set->normal = cross(aux, cyl.dir);
-		set->normal = cross(set->normal, cyl.dir);
-		set->normal = unit_vector(set->normal);
-		// if (dot(set->normal, r.pos) > 0)
-		// 	invert_vector(set->normal);
-		return (1);
-	}
-	else
-		return (0);
-}
-
-int	hit_cyl(t_set *set, t_cyl cyl, t_ray ray)
-{
-	t_equation	eq;
-	
-	set->va = cross(ray.dir, cyl.dir);
-	set->rao = cross(moins(2, ray.pos, cyl.pos), cyl.dir);  
-	eq.a = dot(set->va, set->va);
-	eq.b = 2.0 * dot(set->rao, set->va);
-	eq.c = dot(set->rao, set->rao) - (cyl.r * cyl.r); 
-	eq.delta = (eq.b * eq.b) - (4.0 * eq.a * eq.c);
-	if (eq.delta < 0)
-		return (0);
-	else
-	{
-		eq.t = (-eq.b - sqrt(eq.delta)) / (2 * eq.a);
-		if (eq.t <= 0)// < 0 emi
-			eq.t = (-eq.b + sqrt(eq.delta)) / (2 * eq.a);
-		if (eq.t < set->obj.dist && eq.t >= 0)//t > 0?
-		{
-			if (inside_limits(set, cyl, ray, eq.t))
-				return (1);
-		}
-	}
-	return (0);
-}
-
-// if (t < cyl[i].t && t > 0)
-// cyl[i].t = t;
-// float	check_caps(t_set *set, t_cyl cyl, t_ray ray)
-int	check_cyl(t_set *set, t_cyl cyl, t_ray ray)
-{
-	// float		t;
-	int			hit;
-	
-	hit = 0;
-	hit += check_cap(set, cyl, cyl.top_center, ray);
-	hit += check_cap(set, cyl, cyl.bot_center, ray);
-	hit += hit_cyl(set, cyl, ray);
-	return (hit);
-}
-	// t = hit_cyl(set, cyl, ray);
-	// if (t < set->obj.dist && t >= 0)//t>= 0?
-	// {
-	// 	if (inside_limits(set, cyl, ray))
-	// 		return (1); 
-	// }
-
+// 	n = cyl.dir;
+// 	denom = dot(r.dir, n);
+// 	if (denom < 0)
+// 	{
+//         n = invert_vector(n);
+// 		denom = dot(r.dir, n);
+// 	}
+// 	if (denom > 1e-6)
+// 	{ 
+// 		polo = moins(2, pl_pos,r.pos);
+//         t = dot(polo, n) / denom; 
+// 		if (t < set->obj.dist && t >= 0)//t>= 0?
+// 		{
+// 			if (inside_cyl_cap(set, cyl, pl_pos, r, t))
+// 				return (1);
+// 				// return (t);
+// 		}
+//     } 
+// 	return (0);
+// 	// return (-1);
+// }
 /////////////////////////////////////////////////////////////////////////
 // int	hit_caps(t_ray ray, t_ret_ray *ret_local, t_ret_ray *ret, t_obj *c)
 // {

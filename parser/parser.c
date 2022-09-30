@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 16:50:52 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/20 15:29:22 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/30 20:19:25 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,13 @@ t_q_obj	init_q_objs(void)
 void	calloc_scene_obj(t_set *set, t_q_obj *q_obj)
 {	
 	if (q_obj->sp > 0)
-	{
 		set->sp_list = ft_calloc(q_obj->sp + 1, sizeof(t_sp));
-		set->sp_list[q_obj->sp].empty = 1;
-	}	
 	if (q_obj->pl > 0)
-	{
 		set->plan_list = ft_calloc(q_obj->pl + 1, sizeof(t_plan));
-		set->plan_list[q_obj->pl].empty = 1;
-	}
 	if (q_obj->cy > 0)
-	{
 		set->cyl_list = ft_calloc(q_obj->cy + 1, sizeof(t_cyl));
-		set->cyl_list[q_obj->cy].empty = 1;
-	}
 }
 
-// print_obj(&q_obj);
 t_q_obj	parsing(char *scene_file, t_set *set)
 {
 	t_q_obj	q_obj;
