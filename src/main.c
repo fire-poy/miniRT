@@ -6,11 +6,11 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 10:39:17 by slott             #+#    #+#             */
-/*   Updated: 2022/10/01 16:39:23 by mpons            ###   ########.fr       */
+/*   Updated: 2022/10/01 17:22:30 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRt.h"
+#include "../miniRt.h"
 
 void	my_pxl_put(t_mlx *d, int x, int y, int color)
 {
@@ -20,7 +20,6 @@ void	my_pxl_put(t_mlx *d, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-//free_set at the end
 int	main(int ac, char **av)
 {
 	t_mlx	i;
@@ -35,8 +34,8 @@ int	main(int ac, char **av)
 	set.q_obj = parsing(av[1], &set);
 	set.light.rgb = init_vec(255, 255, 255);
 	render(&i, &set);
-	mlx_key_hook(i.win_ptr, key_hook, NULL);
-	mlx_hook(i.win_ptr, 17, 0, exit_hook, NULL);
+	mlx_key_hook(i.win_ptr, key_hook, &set);
+	mlx_hook(i.win_ptr, 17, 0, exit_hook, &set);
 	mlx_loop(i.mlx_ptr);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 17:04:41 by mpons             #+#    #+#             */
-/*   Updated: 2022/10/01 16:23:59 by mpons            ###   ########.fr       */
+/*   Updated: 2022/10/01 16:51:19 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,6 @@ int	hit_cyl(t_set *set, t_cyl cyl, t_ray ray)
 	return (0);
 }
 
-// if (t < cyl[i].t && t > 0)
-// cyl[i].t = t;
-// float	check_caps(t_set *set, t_cyl cyl, t_ray ray)
-// float		t;
 int	check_cyl(t_set *set, t_cyl cyl, t_ray ray)
 {
 	int			hit;
@@ -77,9 +73,3 @@ int	check_cyl(t_set *set, t_cyl cyl, t_ray ray)
 	hit += hit_cyl(set, cyl, ray);
 	return (hit);
 }
-// t = hit_cyl(set, cyl, ray);
-// if (t < set->obj.dist && t >= 0)//t>= 0?
-// {
-// 	if (inside_limits(set, cyl, ray))
-// 		return (1); 
-// }

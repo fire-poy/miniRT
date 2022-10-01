@@ -6,11 +6,11 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:49:18 by slott             #+#    #+#             */
-/*   Updated: 2022/10/01 14:27:12 by mpons            ###   ########.fr       */
+/*   Updated: 2022/10/01 17:38:56 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRt.h"
+#include "../miniRt.h"
 
 // Renvoie la "longeur" du vecteur
 float	length(t_vect v)

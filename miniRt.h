@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/10/01 16:40:27 by mpons            ###   ########.fr       */
+/*   Updated: 2022/10/01 17:12:14 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,8 +165,8 @@ typedef struct mlx_instance
 t_q_obj	parsing(char *scene_file, t_set *set);
 
 //Mlx
-int		key_hook(int keycode);
-int		exit_hook(void);
+int		key_hook(int keycode, t_set *set);
+int		exit_hook(t_set *set);
 void	my_pxl_put(t_mlx *d, int x, int y, int color);
 
 // Render
@@ -195,5 +195,6 @@ t_vect	point_at(t_ray r, float t);
 t_vect	col_scaled(t_vect col);
 t_vect	ranged(t_vect v);
 float	clamp(float x, float min, float max);
+void	free_scene(t_set *set);
 
 #endif

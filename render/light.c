@@ -6,11 +6,11 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 13:28:54 by slott             #+#    #+#             */
-/*   Updated: 2022/10/01 16:39:37 by mpons            ###   ########.fr       */
+/*   Updated: 2022/10/01 16:44:32 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRt.h"
+#include "../miniRt.h"
 
 int	is_in_light(t_set *set, t_vect p)
 {

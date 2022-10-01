@@ -6,11 +6,11 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 15:46:21 by slott             #+#    #+#             */
-/*   Updated: 2022/10/01 16:40:03 by mpons            ###   ########.fr       */
+/*   Updated: 2022/10/01 17:19:47 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRt.h"
+#include "../miniRt.h"
 
 void	get_closest_sp(t_set *set, t_ray r)
 {

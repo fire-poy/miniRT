@@ -6,14 +6,13 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:03:01 by slott             #+#    #+#             */
-/*   Updated: 2022/09/23 17:26:08 by mpons            ###   ########.fr       */
+/*   Updated: 2022/10/01 17:27:29 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRt.h"
+#include "../miniRt.h"
 
 // Renvoie les coordonees du point en 't' du rayon 'r'
-
 t_vect	point_at(t_ray r, float t)
 {
 	t_vect	point;
@@ -48,4 +47,14 @@ float	clamp(float x, float min, float max)
 t_vect	col_scaled(t_vect col)
 {
 	return (divis_x(col, 255));
+}
+
+void	free_scene(t_set *set)
+{
+	if (set->q_obj.sp > 0)
+		free(set->sp_list);
+	if (set->q_obj.pl > 0)
+		free(set->plan_list);
+	if (set->q_obj.cy > 0)
+		free(set->cyl_list);
 }

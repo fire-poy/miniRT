@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 14:39:00 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/09 19:32:45 by mpons            ###   ########.fr       */
+/*   Updated: 2022/10/01 16:57:38 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,3 @@ void	get_lumiere(t_set *set, char **obj_info)
 	set->light.pos = get_vector_from_string(obj_info[1]);
 	set->light.light = atof(obj_info[2]);
 }
-// bonus
-	// set->light.rgb = get_vector_from_string(obj_info[3]);

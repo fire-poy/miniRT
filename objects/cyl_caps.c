@@ -6,20 +6,20 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 22:16:08 by mpons             #+#    #+#             */
-/*   Updated: 2022/10/01 16:27:36 by mpons            ###   ########.fr       */
+/*   Updated: 2022/10/01 16:50:09 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRt.h"
 
-int	inside_cyl_cap(t_set *set, t_cyl cyl, t_vect pl_center, t_ray r, float t)
+int	inside_cyl_cap(t_set *set, t_cyl cyl, t_vect pl_center, t_ray r)
 {
 	float	d_to_center;
 
-	d_to_center = vector_distance(point_at(r, t), pl_center);
+	d_to_center = vector_distance(point_at(r, r.t), pl_center);
 	if (d_to_center <= cyl.r)
 	{			
-		set->obj.dist = t;
+		set->obj.dist = r.t;
 		if (dot(cyl.dir, r.dir) > 0)
 			set->normal = invert_vector(cyl.dir);
 		else
@@ -42,7 +42,8 @@ int	check_cap(t_set *set, t_cyl cyl, t_vect cap_pos, t_ray r)
 		t = dot(polo, cyl.dir) / denom;
 		if (t < set->obj.dist && t > 0)
 		{
-			if (inside_cyl_cap(set, cyl, cap_pos, r, t))
+			r.t = t;
+			if (inside_cyl_cap(set, cyl, cap_pos, r))
 				return (1);
 		}
 	}

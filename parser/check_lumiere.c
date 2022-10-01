@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:42:55 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/09 18:53:01 by mpons            ###   ########.fr       */
+/*   Updated: 2022/10/01 17:07:41 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,3 @@ void	check_lumiere(char **obj_info, int *q_l, int l_nb)
 	check_coordonees(obj_info, obj_info[1], l_nb);
 	check_lumnosite(obj_info, obj_info[2], l_nb);
 }
-//bonus
-//if (ft_tab_len(obj_info) != 4)
-// check_colors(obj_info, obj_info[3], l_nb); bonus
