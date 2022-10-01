@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/09/23 18:30:34 by slott            ###   ########.fr       */
+/*   Updated: 2022/10/01 16:40:27 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef struct s_plan
 	t_vect	pos;
 	t_vect	dir;
 	t_vect	rgb;
-	int		empty;
 }					t_plan;
 
 typedef struct s_ambiant
@@ -69,9 +68,10 @@ typedef struct s_cyl
 	t_vect	pos;
 	t_vect	dir;
 	t_vect	rgb;
+	t_vect	top_center;
+	t_vect	bot_center;
 	float	r;
 	float	len;
-	int		empty;
 }					t_cyl;
 
 typedef struct s_ray
@@ -86,7 +86,6 @@ typedef struct s_sphere
 	t_vect	c;
 	float	r;
 	t_vect	rgb;
-	int		empty;
 }					t_sp;
 
 typedef struct s_window
@@ -163,12 +162,9 @@ typedef struct mlx_instance
 }		t_mlx;
 
 //Parsing
-
-// void	parsing(char *scene_file, t_set *set);
 t_q_obj	parsing(char *scene_file, t_set *set);
 
 //Mlx
-
 int		key_hook(int keycode);
 int		exit_hook(void);
 void	my_pxl_put(t_mlx *d, int x, int y, int color);
@@ -181,16 +177,17 @@ t_vect	phong(t_set *set, t_vect p, t_vect o_col);
 int		is_in_light(t_set *set, t_vect p);
 t_vect	blend_light(t_set *set, t_vect p);
 t_vect	reflect(t_vect l_dir, t_vect norm);
-
-// t_sp	get_closest_sp(t_set *set, t_ray r, int ex, float t_max);
 void	get_closest_sp(t_set *set, t_ray r);
 void	get_closest_pl(t_set *set, t_ray r);
+void	get_closest_cyl(t_set *set, t_ray r);
 int		get_closest(t_set *set, t_ray r, float t_max);
 
 // Objects
-
 float	hit_sp(t_sp sp, t_ray ray);
 float	hit_plan(t_plan pl, t_ray r);
+int		hit_cyl(t_set *set, t_cyl cyl, t_ray ray);
+int		check_cyl(t_set *set, t_cyl cyl, t_ray ray);
+int		check_cap(t_set *set, t_cyl cyl, t_vect pl_pos, t_ray r);
 void	fov(t_set *set);
 
 // Utils
@@ -198,7 +195,5 @@ t_vect	point_at(t_ray r, float t);
 t_vect	col_scaled(t_vect col);
 t_vect	ranged(t_vect v);
 float	clamp(float x, float min, float max);
-t_vect    invert_vector(t_vect v);
-
 
 #endif

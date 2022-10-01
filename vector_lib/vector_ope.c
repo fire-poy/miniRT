@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 14:49:18 by slott             #+#    #+#             */
-/*   Updated: 2022/09/18 13:48:40 by slott            ###   ########.fr       */
+/*   Updated: 2022/10/01 14:27:12 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,17 @@ float	length(t_vect v)
 
 	length = sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
 	return (length);
+}
+
+//Rendre la distance entre 2 vecteurs
+float	vector_distance(t_vect a, t_vect b)
+{
+	t_vect	sust;
+	float	dist;
+
+	sust = moins(2, a, b);
+	dist = length(sust);
+	return (dist);
 }
 
 // Transforme un vecteur en vecteur unitaire

@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 15:02:07 by slott             #+#    #+#             */
-/*   Updated: 2022/09/06 14:59:33 by slott            ###   ########.fr       */
+/*   Updated: 2022/10/01 16:29:03 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ t_vect	plus_x(t_vect v1, float t);
 t_vect	moins_x(t_vect v1, float t);
 t_vect	fois_x(t_vect v1, float t);
 t_vect	divis_x(t_vect v1, float t);
+t_vect	invert_vector(t_vect v);
 
 float	length(t_vect v);
+float	vector_distance(t_vect a, t_vect b);
 t_vect	unit_vector(t_vect v);
 float	dot(t_vect v1, t_vect v2);
 t_vect	cross(t_vect v1, t_vect v2);

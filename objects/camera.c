@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 17:51:03 by slott             #+#    #+#             */
-/*   Updated: 2022/09/23 18:30:28 by slott            ###   ########.fr       */
+/*   Updated: 2022/10/01 16:40:09 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	fov(t_set *set)
 	float	angle;
 
 	vup = init_vec(0, 1, 0);
-	// vup = set->cam.dir;
 	angle = (set->cam.fov * (M_PI / 180)) / 2;
 	half_width = tan(angle);
 	half_height = half_width / 2;
