@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/10/01 14:45:47 by mpons            ###   ########.fr       */
+/*   Updated: 2022/10/01 16:40:27 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,7 @@ void	my_pxl_put(t_mlx *d, int x, int y, int color);
 // Render
 t_vect	color(t_set *set, t_ray r);
 void	render(t_mlx *i, t_set *set);
+t_vect	render_core(t_set *set, int x, int y);
 t_vect	phong(t_set *set, t_vect p, t_vect o_col);
 int		is_in_light(t_set *set, t_vect p);
 t_vect	blend_light(t_set *set, t_vect p);
