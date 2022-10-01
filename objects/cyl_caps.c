@@ -6,17 +6,13 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 22:16:08 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/30 20:47:09 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/30 23:37:01 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../miniRt.h"
 
-// set->normal = (moins(2, point_at(r, t), set->sp_list[i].c));
-// hit_point = moins(2, r.pos, point_at(r, t));
-// distance_to_cap_center = distance_between_two_vectors(ret_local.p, cylinder_cap.pos);
-		// sustraction = op_minus(a, b);
-		// distance = vect_len(sustraction);
+//error viens d'ici??? je crois PAS
 float	vector_distance(t_vect a, t_vect b)
 {
 	t_vect	sust;
@@ -27,27 +23,41 @@ float	vector_distance(t_vect a, t_vect b)
 	return (dist);
 }
 
-//distance_to_cap_center
+// t_vect	hit_point;
+// t_vect	vec;
+// hit_point = point_at(r, t);
+// vec = moins(2, hit_point, pl_center);
+// d_to_center = length(vec);
+
+//problem unit_vector normal cyl ou calcul pos
 int	inside_cyl_cap(t_set *set, t_cyl cyl, t_vect pl_center, t_ray r, float t)
 {
 	float	d_to_center;
-	t_vect	vec;
-	t_vect	hit_point;
+	// static	int i =0;
 
-	hit_point = point_at(r, t);
-	vec = moins(2, hit_point, pl_center);
-	d_to_center = length(vec);
-	if (d_to_center <= cyl.r - 0.5) //&& t < set->obj.dist && t > 0)//de acuerdo con el if de check-cap
+	// t_vect	p;
+	// p = plus(2, r.pos, fois_x(r.dir, t));
+	// d_to_center = vector_distance(p, pl_center);
+	d_to_center = vector_distance(point_at(r, t), pl_center);
+	// ret->p = op_plus(d.o, op_mult(ret->t, d.d));
+	// if (d_to_center <= cyl.r - 1)
+	// if (i = 0)
+		// printf()
+	if (d_to_center <= cyl.r)
 	{			
 		// printf("d_to_center %f\n", d_to_center);
 		// printf("cyl.r %f\n", cyl.r);
 		set->obj.dist = t;
-		set->normal = unit_vector(cyl.dir);
+		if (dot(cyl.dir, r.dir) > 0)
+			set->normal = invert_vector(cyl.dir);
+		else
+			set->normal = cyl.dir;
 		return (1);
 	}
 	return (0);
 }
 
+// set->normal = unit_vector(cyl.dir);
 int	check_cap(t_set *set, t_cyl cyl, t_vect cap_pos, t_ray r)
 {
 	t_vect		polo;
@@ -68,35 +78,8 @@ int	check_cap(t_set *set, t_cyl cyl, t_vect cap_pos, t_ray r)
 	return (0);
 }
 
-// int	check_cap(t_set *set, t_cyl cyl, t_vect pl_pos, t_ray r)
-// {
-// 	t_vect		n;
-// 	t_vect		polo;
-// 	float		denom;
-// 	float		t;
 
-// 	n = cyl.dir;
-// 	denom = dot(r.dir, n);
-// 	if (denom < 0)
-// 	{
-//         n = invert_vector(n);
-// 		denom = dot(r.dir, n);
-// 	}
-// 	if (denom > 1e-6)
-// 	{ 
-// 		polo = moins(2, pl_pos,r.pos);
-//         t = dot(polo, n) / denom; 
-// 		if (t < set->obj.dist && t >= 0)//t>= 0?
-// 		{
-// 			if (inside_cyl_cap(set, cyl, pl_pos, r, t))
-// 				return (1);
-// 				// return (t);
-// 		}
-//     } 
-// 	return (0);
-// 	// return (-1);
-// }
-/////////////////////////////////////////////////////////////////////////
+// ///////////////////////////////////////////////////////////////////////
 // int	hit_caps(t_ray ray, t_ret_ray *ret_local, t_ret_ray *ret, t_obj *c)
 // {
 // 	int	intersect_status;

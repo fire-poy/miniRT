@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:52:36 by mpons             #+#    #+#             */
-/*   Updated: 2022/09/30 20:40:26 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/30 21:56:02 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 t_vect    invert_vector(t_vect v)
 {
-	v = fois_x(v, -1); 
-	return (v);
+	t_vect	r;
+	
+	r = fois_x(v, -1); 
+	return (r);
 }
 
 float	hit_plan(t_plan pl, t_ray r)

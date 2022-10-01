@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 15:46:21 by slott             #+#    #+#             */
-/*   Updated: 2022/09/30 20:40:37 by mpons            ###   ########.fr       */
+/*   Updated: 2022/09/30 23:02:14 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	get_closest_cyl(t_set *set, t_ray r)
 	i = 0;
 	while (i < set->q_obj.cy)
 	{
-		if (check_cyl(set, set->cyl_list[i], r))
+		if (check_cyl(set, set->cyl_list[i], r) > 0)
 		{
 			set->obj.idx = i;
 			set->obj.type = CYLINDRE;
