@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 15:46:21 by slott             #+#    #+#             */
-/*   Updated: 2022/09/30 23:02:14 by mpons            ###   ########.fr       */
+/*   Updated: 2022/10/01 16:26:37 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	get_closest_cyl(t_set *set, t_ray r)
 	}
 }
 
-void	get_closest_pl(t_set *set, t_ray r)//, int flag)
+void	get_closest_pl(t_set *set, t_ray r)
 {
 	int		i;
 	float	t;
@@ -67,9 +67,9 @@ void	get_closest_pl(t_set *set, t_ray r)//, int flag)
 			set->obj.type = PLAN;
 			set->obj.col = set->plan_list[i].rgb;
 			if (dot(set->plan_list[i].dir, r.dir) > 0)
-				set->normal = invert_vector(set->plan_list[i].dir);
+				set->normal = unit_vector(invert_vector(set->plan_list[i].dir));
 			else
-				set->normal = set->plan_list[i].dir;
+				set->normal = unit_vector(set->plan_list[i].dir);
 		}
 		i++;
 	}
@@ -90,7 +90,7 @@ int	get_closest(t_set *set, t_ray r, float t_max)
 {
 	set->obj = init_obj(t_max);
 	get_closest_sp(set, r);
-	get_closest_pl(set, r); 
+	get_closest_pl(set, r);
 	get_closest_cyl(set, r);
 	if (set->obj.type == -1)
 		return (-1);

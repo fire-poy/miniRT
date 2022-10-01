@@ -6,14 +6,13 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 14:52:48 by slott             #+#    #+#             */
-/*   Updated: 2022/09/18 13:50:27 by slott            ###   ########.fr       */
+/*   Updated: 2022/10/01 14:27:22 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 
 //Initialise un vecteur aux valeurs x, y et z
-
 t_vect	init_vec(float x, float y, float z)
 {
 	t_vect	v;
@@ -26,7 +25,6 @@ t_vect	init_vec(float x, float y, float z)
 
 //Convertis un vecteur aux valeurs comprise entre 0 et 1 en int compatible avec
 // la fonction my_pxl_put
-
 int	to_color(t_vect col)
 {
 	int	final;
@@ -40,7 +38,6 @@ int	to_color(t_vect col)
 }
 
 //Affiche les valeurs d'un vecteur
-
 void	print_vec(t_vect v)
 {
 	printf("X : %f\n", v.x);

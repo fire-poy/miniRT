@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 14:23:09 by slott             #+#    #+#             */
-/*   Updated: 2022/09/15 17:18:30 by mpons            ###   ########.fr       */
+/*   Updated: 2022/10/01 16:20:27 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,12 @@ t_vect	divis_x(t_vect v1, float t)
 	final.y = v1.y / t;
 	final.z = v1.z / t;
 	return (final);
+}
+
+t_vect	invert_vector(t_vect v)
+{
+	t_vect	r;
+
+	r = fois_x(v, -1);
+	return (r);
 }

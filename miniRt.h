@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 15:33:15 by slott             #+#    #+#             */
-/*   Updated: 2022/10/01 12:49:22 by mpons            ###   ########.fr       */
+/*   Updated: 2022/10/01 14:45:47 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,12 @@ typedef struct s_light
 typedef struct s_cyl
 {
 	t_vect	pos;
-	t_vect	dir;//disque dir == cyl dir
+	t_vect	dir;
 	t_vect	rgb;
+	t_vect	top_center;
+	t_vect	bot_center;
 	float	r;
 	float	len;
-	t_vect	rao;
-	t_vect	va;
-	t_vect	top_center;//disque pos
-	t_vect	bot_center;//disque pos
 }					t_cyl;
 
 typedef struct s_ray
@@ -150,8 +148,6 @@ typedef struct s_set
 	t_obj		obj;
 	t_vect		normal;
 	t_q_obj		q_obj;
-	t_vect		va;
-	t_vect		rao;
 }					t_set;	
 
 typedef struct mlx_instance
@@ -198,7 +194,5 @@ t_vect	point_at(t_ray r, float t);
 t_vect	col_scaled(t_vect col);
 t_vect	ranged(t_vect v);
 float	clamp(float x, float min, float max);
-t_vect	invert_vector(t_vect v);
-float	vector_distance(t_vect a, t_vect b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 13:28:54 by slott             #+#    #+#             */
-/*   Updated: 2022/09/30 20:11:08 by mpons            ###   ########.fr       */
+/*   Updated: 2022/10/01 14:43:13 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ t_vect	phong(t_set *set, t_vect p, t_vect o_col)
 	ph.i_s = init_vec(1, 1, 1);
 	ph.alpha = 10.0;
 	ph.specular = fois_x(ph.i_s, ph.k_s * pow(ph.dotrv, ph.alpha));
-	// ph.col = ranged(plus(2, ph.ambiant, ph.diffuse));
 	ph.col = ranged(plus(3, ph.ambiant, ph.diffuse, ph.specular));
 	return (ph.col);
 }
