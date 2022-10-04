@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 14:39:00 by mpons             #+#    #+#             */
-/*   Updated: 2022/10/01 16:57:38 by mpons            ###   ########.fr       */
+/*   Updated: 2022/10/03 12:44:19 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	get_camera(t_set *set, char **obj_info)
 {
 	set->cam.pos = get_vector_from_string(obj_info[1]);
 	set->cam.dir = get_vector_from_string(obj_info[2]);
+	set->cam.dir = invert_vector(set->cam.dir);
 	set->cam.fov = ft_atoi(obj_info[3]);
 	fov(set);
 }
